@@ -1,8 +1,8 @@
 FROM python:latest
 
-ADD checker.py /checker.py
+ADD check.py /check.py
 ADD requirements.txt /requirements.txt
 
 RUN pip install -r requirements.txt
-RUN chmod +x checker.py
+RUN chmod +x check.py
 ENTRYPOINT ["/checker.py"]
