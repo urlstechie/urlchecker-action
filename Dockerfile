@@ -1,8 +1,7 @@
-FROM python:latest
+FROM python:3
 
-ADD check.py /check.py
+ADD check.py /
 ADD requirements.txt /requirements.txt
 
 RUN pip install -r requirements.txt
-RUN chmod +x check.py
-ENTRYPOINT ["/check.py"]
+CMD [ "python", "./check.py" ]
