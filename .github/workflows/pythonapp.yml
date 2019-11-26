@@ -12,6 +12,6 @@ jobs:
     - name: Run URLcheck
       uses: SuperKogito/URLcheck@master
       with:
-        base_path: https://github.com/SuperKogito/SuperKogito.github.io/tree/master/_project/docs
+        base_path: https://github.com/SuperKogito/SuperKogito.github.io/tree/master/_project/docs/source
         file_types: .md,.py,.rst
         print_all: False
