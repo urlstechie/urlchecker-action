@@ -2,9 +2,9 @@ import os
 import urlproc
 import fileproc
 
-base_path = os.getenv("BASE_PATH", "")
-file_types = os.getenv("FILE_TYPES", "").split(",")
-print_all = os.getenv("PRINT_ALL", "")
+base_path = os.getenv("INPUT_BASE_PATH", "")
+file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
+print_all = os.getenv("INPUT_PRINT_ALL", "")
 print(os.getenv())
 print(base_path, file_types, print_all)
 
