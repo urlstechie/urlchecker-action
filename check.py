@@ -27,3 +27,6 @@ for file in file_paths:
         if print_all == True:
             print("\n", file, "\n", "-" * len(file))
             print("No urls found.")
+
+# print done to mark end of script
+print("Done.")
