@@ -6,6 +6,8 @@ base_path = os.getenv("BASE_PATH", "")
 file_types = os.getenv("FILE_TYPES", "").split(",")
 print_all = os.getenv("PRINT_ALL", "")
 
+print(base_path, file_types, print_all)
+
 # get all file paths
 file_paths = fileproc.get_file_paths(base_path, file_types)
 
