@@ -10,6 +10,7 @@ print(base_path, file_types, print_all)
 
 # get all file paths
 file_paths = fileproc.get_file_paths(base_path, file_types)
+print("file_paths: ", file_paths)
 
 # loop files
 for file in file_paths:
