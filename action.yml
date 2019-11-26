@@ -8,12 +8,12 @@ inputs:
     required: True
 
   file_types:
-    description: "A comma-separated list of file types to cover in the url checks"
+    description: "A comma-separated list of file types to cover in the URL checks"
     required: False
     default: ".md,.py,.rst"
 
   print_all:
-    description: "Choose whether to include file with no urls in the prints."
+    description: "Choose whether to include file with no URLs in the prints."
     required: False
     default: False
 
