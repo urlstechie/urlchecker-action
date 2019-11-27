@@ -3,7 +3,7 @@ author: "Ayoub Malek"
 description: "Automatically check for broken links in a project files. This includes python, markdwon, restructured text files and more."
 
 inputs:
-  base_path:
+  git_path:
     description: "The project base path."
     required: True
 
