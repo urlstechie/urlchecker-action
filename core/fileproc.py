@@ -1,7 +1,8 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import re
 import os
-import urlmarker
-import urllib.request
+from core import urlmarker
 from termcolor import colored
 
 
@@ -29,8 +30,8 @@ def get_file_paths(base_path, file_types):
     get path to all files under a give directory and its subfolders.
 
     Args:
-        base_path (string) : base path.
-        file_types  (list) : list of file extensions to accept.
+        base_path   (str) : base path.
+        file_types (list) : list of file extensions to accept.
 
     Returns:
         list of file paths.

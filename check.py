@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os
 from core import urlproc
 from core import fileproc
@@ -28,7 +30,7 @@ for file in file_paths:
 
     # if no urls are found, mention it if required
     else:
-        if print_all == True:
+        if print_all == "True":
             print("\n", file, "\n", "-" * len(file))
             print("No urls found.")
 

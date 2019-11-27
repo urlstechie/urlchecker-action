@@ -6,10 +6,12 @@ inputs:
   git_path:
     description: "The project base path."
     required: True
+
   file_types:
     description: "A comma-separated list of file types to cover in the URL checks"
     required: False
-    default: ".md,.py,.rst"
+    default: ".md,.py,.rst,.html"
+
   print_all:
     description: "Choose whether to include file with no URLs in the prints."
     required: False
