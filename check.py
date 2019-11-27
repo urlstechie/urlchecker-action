@@ -2,7 +2,7 @@ import os
 import urlproc
 import fileproc
 
-base_path = os.getenv("INPUT_GIT_PATH", "")
+git_path = os.getenv("INPUT_GIT_PATH", "")
 file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
 print_all = os.getenv("INPUT_PRINT_ALL", "")
 print("Inputs: ", git_path, file_types, print_all)
