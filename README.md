@@ -22,7 +22,7 @@ Choose whether to include file with no URLs in the prints. ***[optional]***
 ```
 uses: actions/URLcheck@v1
 with:
-  base_path: "path link to project"
+  git_path: "path link to project"
   file_types: ".md,.py,.rst"
   print_all: False
 ```
