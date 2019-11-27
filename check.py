@@ -12,6 +12,12 @@ print(base_path, file_types, print_all)
 file_paths = fileproc.get_file_paths(base_path, file_types)
 print("file_paths: ", file_paths)
 
+file_paths = ["https://github.com/SuperKogito/SuperKogito.github.io/blob/master/_project/docs/source/index.rst"]
+
+import requests
+text = requests.get(filepath).text
+print(text)
+
 # loop files
 for file in file_paths:
 
