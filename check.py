@@ -1,12 +1,14 @@
 import os
-import urlproc
-import fileproc
+from core import urlproc
+from core import fileproc
 
+
+# read input variables
 git_path = os.getenv("INPUT_GIT_PATH", "")
 file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
 print_all = os.getenv("INPUT_PRINT_ALL", "")
-print("Inputs: ", git_path, file_types, print_all)
 
+# get directory name and clone it from git
 base_path = os.path.basename(git_path)
 os.system(f"git clone {git_path} {base_path}")
 

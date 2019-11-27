@@ -5,28 +5,32 @@ import urllib.request
 from termcolor import colored
 
 
-def check_file_type(file, file_types):
+def check_file_type(file_path, file_types):
     """
     check file type to assert that only file with certain predefined extensions
     are checked.
 
     Args:
-        file        (str) : file name.
+        file_path   (str) : path to file.
         file_types (list) : list of file extensions to accept.
+
+    Returns:
+        boolean, true if file type is supported else false.
     """
-    ftype = "." + file.split(".")[-1]
+    ftype = "." + file_path.split(".")[-1]
     if ftype in file_types:
         return True
     else:
         return False
 
 
-def get_file_paths(path, file_types=[".py", ".md", ".c", ".rst"]):
+def get_file_paths(base_path, file_types):
     """
     get path to all files under a give directory and its subfolders.
 
     Args:
-        path (string) : base path.
+        base_path (string) : base path.
+        file_types  (list) : list of file extensions to accept.
 
     Returns:
         list of file paths.
@@ -34,19 +38,25 @@ def get_file_paths(path, file_types=[".py", ".md", ".c", ".rst"]):
     # init paths
     file_paths = []
 
-    # r = root, d = directories, f = files
-    for root, directory, files in os.walk(path):
+    # walk folders and colect file paths
+    for root, directory, files in os.walk(base_path):
         file_paths += [
-            os.path.join(root, file) for file in files
-            if os.path.isfile(os.path.join(root, file))
-            and check_file_type(file, file_types)
-        ]
+                        os.path.join(root, file) for file in files
+                        if os.path.isfile(os.path.join(root, file))
+                        and check_file_type(file, file_types)
+                      ]
     return file_paths
 
 
 def collect_links_from_file(file_path):
     """
     collect all links in a file.
+
+    Args:
+        file_path   (str) : path to file.
+
+    Returns:
+        list of links/ urls in a file.
     """
     # read file content
     with open(file_path, 'r') as file:
