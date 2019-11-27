@@ -1,8 +1,11 @@
-FROM python:latest
+FROM python:3
 
-ADD check.py /check.py
+ADD check.py /
 ADD requirements.txt /requirements.txt
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
 RUN pip install -r requirements.txt
-RUN chmod +x check.py
-ENTRYPOINT ["/check.py"]
+CMD [ "python", "-u", "./check.py" ]
