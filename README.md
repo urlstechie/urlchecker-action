@@ -7,7 +7,7 @@ The action aims at detecting and reporting broken links.
 
 # Inputs
 
-### `base_path`
+### `git_path`
 
  The path to the start directory of the project. ***[Required]***
 

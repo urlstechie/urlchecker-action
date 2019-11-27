@@ -2,21 +2,16 @@ import os
 import urlproc
 import fileproc
 
-base_path = os.getenv("INPUT_BASE_PATH", "")
+base_path = os.getenv("INPUT_GIT_PATH", "")
 file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
 print_all = os.getenv("INPUT_PRINT_ALL", "")
+print("Inputs: ", git_path, file_types, print_all)
 
-print(base_path, file_types, print_all)
+base_path = os.path.basename(git_path)
+os.system(f"git clone {git_path} {base_path}")
 
 # get all file paths
 file_paths = fileproc.get_file_paths(base_path, file_types)
-print("file_paths: ", file_paths)
-
-file_paths = ["https://github.com/SuperKogito/SuperKogito.github.io/blob/master/_project/docs/source/index.rst"]
-
-import requests
-text = requests.get(file_paths[0]).text
-print(text)
 
 # loop files
 for file in file_paths:
@@ -36,4 +31,5 @@ for file in file_paths:
             print("No urls found.")
 
 # print done to mark end of script
+os.system(f"rm -R -f {base_path}")
 print("Done.")
