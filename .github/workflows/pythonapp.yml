@@ -1,4 +1,4 @@
-name: Test URLcheck
+name: Test URLs-checker
 
 on: [push]
 
@@ -9,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Run URLcheck
-      uses: SuperKogito/URLcheck@master
+    - name: Run URLs-checker
+      uses: SuperKogito/URLs-checker@master
       with:
         git_path: https://github.com/SuperKogito/SuperKogito.github.io
         file_types: .md,.py,.rst
