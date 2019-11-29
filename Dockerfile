@@ -10,4 +10,4 @@ RUN apt-get update && \
 
 RUN pip install -r requirements.txt
 RUN pwd
-CMD [ "python", "-u", "./check.py" ]
+CMD [ "python", "-u", "/check.py" ]
