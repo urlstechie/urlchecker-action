@@ -1,6 +1,7 @@
 FROM python:3
 
-ADD check.py /
+RUN pwd
+ADD check.py /check.py
 ADD requirements.txt /requirements.txt
 
 RUN apt-get update && \
