@@ -12,7 +12,7 @@ print_all = os.getenv("INPUT_PRINT_ALL", "")
 
 # get directory name and clone it from git
 base_path = os.path.basename(git_path)
-os.system(f"git clone {git_path} {base_path}")
+os.system("git clone " + git_path + " " + base_path)
 
 # get all file paths
 file_paths = fileproc.get_file_paths(base_path, file_types)
@@ -35,5 +35,5 @@ for file in file_paths:
             print("No urls found.")
 
 # print done to mark end of script
-os.system(f"rm -R -f {base_path}")
+os.system("rm -R -f " + base_path)
 print("Done.")
