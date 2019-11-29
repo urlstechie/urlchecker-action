@@ -10,4 +10,5 @@ RUN apt-get update && \
 
 RUN pip install -r requirements.txt
 RUN pwd
+RUN chmod +x check_links.py
 ENTRYPOINT ["/check.py"]
