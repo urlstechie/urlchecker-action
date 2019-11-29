@@ -8,4 +8,5 @@ RUN apt-get update && \
     apt-get install -y git
 
 RUN pip install -r requirements.txt
+RUN pwd
 CMD [ "python", "-u", "./check.py" ]
