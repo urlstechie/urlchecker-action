@@ -1,7 +1,7 @@
 FROM python:3
 
 RUN pwd
-ADD check.py /check.py
+ADD check.py /
 ADD requirements.txt /requirements.txt
 
 RUN apt-get update && \
@@ -10,4 +10,4 @@ RUN apt-get update && \
 
 RUN pip install -r requirements.txt
 RUN pwd
-CMD [ "python", "-u", "/check.py" ]
+RUN python -u check.py
