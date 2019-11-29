@@ -1,7 +1,7 @@
 FROM python:3
 
 RUN pwd
-ADD check.py /check.py
+ADD check.py /
 ADD core/fileproc.py /core/fileproc.py
 ADD core/urlmarker.py /core/urlmarker.py
 ADD core/urlproc.py /core/urlproc.py
@@ -14,5 +14,4 @@ RUN apt-get update && \
 
 RUN pip install -r requirements.txt
 RUN pwd
-RUN chmod +x check.py
-ENTRYPOINT ["/check.py"]
+CMD [ "python", "-u", "./check.py" ]
