@@ -10,8 +10,7 @@ def test_clone_repo(git_path):
     test clone repo function.
     """
     cloning_status = clone_rep(git_path)
-    if cloning_status != True:
-        raise AssertionError
+    assert(cloning_status == True)
 
 
 @pytest.mark.parametrize('base_path', ["SuperKogito.github.io"])
@@ -20,8 +19,7 @@ def test_del_repo(base_path):
     test del repo function.
     """
     deletion_status = del_repo(base_path)
-    if deletion_status != True:
-        raise AssertionError
+    assert(deletion_status == True)
 
 
 @pytest.mark.parametrize('file_paths', [["tests/test_files/sample_test_file.md"],
@@ -31,6 +29,4 @@ def test_check_repo(file_paths, print_all):
     """
     test check repo function.
     """
-    import os
-    print(os.getcwd())
     check_repo(file_paths, print_all)
