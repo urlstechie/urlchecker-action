@@ -10,9 +10,8 @@ def clone_repo(git_path):
     clone and name a git repository.
     """
     base_path = os.path.basename(git_path)
-    print(git_path, base_path)
     os.system("git clone " + git_path + " " + base_path)
-    return True
+    return base_path
 
 
 def del_repo(base_path):
@@ -52,7 +51,7 @@ if __name__ == "__main__":
     print_all = os.getenv("INPUT_PRINT_ALL", "")
 
     # clone project repo
-    cloning_status = clone_repo(git_path)
+    base_path = clone_repo(git_path)
 
     # get all file paths
     file_paths = fileproc.get_file_paths(base_path, file_types)

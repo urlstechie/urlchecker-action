@@ -10,11 +10,10 @@ def test_clone_and_del_repo(git_path):
     """
     test clone and del repo function.
     """
-    base_path = os.path.basename(git_path)
     # test correct functioning
     # clone
-    cloning_status_true = clone_repo(git_path)
-    assert(cloning_status_true == True)
+    base_path = clone_repo(git_path)
+    assert(base_path == os.path.basename(git_path))
     # delete
     deletion_status = del_repo(base_path)
     assert(deletion_status == True)
