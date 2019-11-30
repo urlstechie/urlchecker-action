@@ -57,7 +57,7 @@ if __name__ == "__main__":
     file_paths = fileproc.get_file_paths(base_path, file_types)
 
     # check repo urls
-    check_repo(file_paths)
+    check_repo(file_paths, print_all)
 
     # delete repo when done
     deletion_status = del_repo(base_path)
