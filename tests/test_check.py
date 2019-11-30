@@ -29,3 +29,7 @@ def test_check_repo(file_paths, print_all):
     test check repo function.
     """
     check_repo(file_paths, print_all)
+
+@pytest.mark.xfail
+def test_script():
+    os.system("python3 check.py")
