@@ -10,23 +10,17 @@ def clone_rep(git_path):
     clone and name a git repository.
     """
     base_path = os.path.basename(git_path)
-    try:
-        os.system("git clone " + git_path + " " + base_path)
-        return True
-    except:
-        return False
+    print(git_path, base_path)
+    os.system("git clone " + git_path + " " + base_path)
+    return True
 
 
 def del_repo(base_path):
     """
     delete repository.
     """
-    try:
-        os.system("rm -R -f " + base_path)
-        return True
-    except:
-        return False
-
+    os.system("rm -R -f " + base_path)
+    return True
 
 def check_repo(file_paths, print_all):
     """
