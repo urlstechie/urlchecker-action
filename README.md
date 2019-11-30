@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SuperKogito/URLs-checker.svg?branch=master)](https://travis-ci.org/SuperKogito/URLs-checker)
+[![codecov](https://codecov.io/gh/SuperKogito/URLs-checker/branch/master/graph/badge.svg)](https://codecov.io/gh/SuperKogito/URLs-checker)
 # URLs-checker
 
 A GitHub action to collect and check URLs in a project (code and documentation).
