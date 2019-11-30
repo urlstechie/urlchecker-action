@@ -5,7 +5,7 @@ from core import urlproc
 from core import fileproc
 
 
-def clone_rep(git_path):
+def clone_repo(git_path):
     """
     clone and name a git repository.
     """

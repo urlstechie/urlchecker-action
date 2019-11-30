@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import pytest
-from check import clone_rep, del_repo, check_repo
+from check import clone_repo, del_repo, check_repo
 
 
 @pytest.mark.parametrize('git_path', ["https://github.com/SuperKogito/SuperKogito.github.io"])
@@ -13,7 +13,7 @@ def test_clone_and_del_repo(git_path):
     base_path = os.path.basename(git_path)
     # test correct functioning
     # clone
-    cloning_status_true = clone_rep(git_path)
+    cloning_status_true = clone_repo(git_path)
     assert(cloning_status_true == True)
     # delete
     deletion_status = del_repo(base_path)
