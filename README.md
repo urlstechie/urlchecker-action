@@ -8,26 +8,26 @@ The action aims at detecting and reporting broken links.
 # How to use?
 
 ```
-  name: Check URLs
+name: Check URLs
 
-  on: [push]
+on: [push]
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: URLs-checker
-        uses: actions/URLs-checker@master
-        with:
-          # The project base path.
-          git_path: https://github.com/SuperKogito/SuperKogito.github.io
+    steps:
+    - name: URLs-checker
+      uses: actions/URLs-checker@master
+      with:
+        # The project base path.
+        git_path: https://github.com/SuperKogito/SuperKogito.github.io
 
-          # A comma-separated list of file types to cover in the URL checks
-          file_types: .md,.py,.rst
+        # A comma-separated list of file types to cover in the URL checks
+        file_types: .md,.py,.rst
 
-          # Choose whether to include file with no URLs in the prints.
-          print_all: False
+        # Choose whether to include file with no URLs in the prints.
+        print_all: False
 ```
 ## Inputs
 
