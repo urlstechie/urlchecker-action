@@ -49,3 +49,6 @@ def check_urls(file, urls):
 
         except requests.exceptions.ConnectionError:
             print(print_format % (url, colored("x", "red")))
+
+        except Exception as e:
+            print(e.message)

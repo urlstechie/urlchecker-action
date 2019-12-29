@@ -21,7 +21,27 @@ def del_repo(base_path):
     os.system("rm -R -f " + base_path)
     return True
 
-def check_repo(file_paths, print_all):
+
+def white_listed(url, white_listed_urls, white_listed_patterns):
+    """
+    check if link is in the white listed URLs or patterns to ignore.
+    """
+    # check white listed urls
+    if url in white_listed_urls:
+        return True
+
+    # check white listed patterns
+    i = 0
+    while i < len(white_listed_patterns):
+        if white_listed_patterns[i] in url:
+            return True
+        i += 1
+
+    # default return
+    return False
+
+
+def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
     """
     check all urls extracted from all files in a repository.
     """
@@ -30,6 +50,13 @@ def check_repo(file_paths, print_all):
 
         # collect links from each file
         urls = fileproc.collect_links_from_file(file)
+
+        # eliminate white listed urls and white listed white listed patterns
+        if  len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
+            urls = [url for url in urls
+                    if not white_listed(url,
+                                        white_listed_urls,
+                                        white_listed_patterns)]
 
         # if some links are found, check them
         if urls != []:
@@ -49,6 +76,8 @@ if __name__ == "__main__":
     git_path = os.getenv("INPUT_GIT_PATH", "")
     file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
     print_all = os.getenv("INPUT_PRINT_ALL", "")
+    white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
+    white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
 
     # clone project repo
     base_path = clone_repo(git_path)
@@ -57,7 +86,7 @@ if __name__ == "__main__":
     file_paths = fileproc.get_file_paths(base_path, file_types)
 
     # check repo urls
-    check_repo(file_paths, print_all)
+    check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns)
 
     # delete repo when done
     deletion_status = del_repo(base_path)
