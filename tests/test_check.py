@@ -37,7 +37,7 @@ def test_check_repo(file_paths,
     check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns)
 
 
-@pytest.mark.parametrize('config_fname', ['_local_test_config.conf'])
+@pytest.mark.parametrize('config_fname', ['./tests/_local_test_config.conf'])
 def test_script(config_fname):
     # init config parser
     config = configparser.ConfigParser()
