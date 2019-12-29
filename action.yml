@@ -17,6 +17,16 @@ inputs:
     required: False
     default: False
 
+  white_listed_urls:
+    description: "A comma seperated links to exclude during URL checks."
+    required: False
+    default: False
+
+  white_listed_patterns:
+    description: "A comma seperated patterns to exclude during URL checks."
+    required: False
+    default: False
+
 runs:
   using: "docker"
   image: "Dockerfile"

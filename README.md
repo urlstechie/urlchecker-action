@@ -32,14 +32,22 @@ jobs:
 
         # Choose whether to include file with no URLs in the prints.
         print_all: False
+
+        # A comma separated links to exclude during URL checks
+        white_listed_urls: https://superkogito.github.io/figures/fig2.html, https://superkogito.github.io/figures/fig4.html
+
+        # A comma separated patterns to exclude during URL checks
+        white_listed_patterns: https://superkogito.github.io/tables
 ```
 ## Inputs
 
-| variable name | variable type                                |      variable description                                        |
-|---------------|----------------------------------------------|------------------------------------------------------------------|
-| `git_path`    | <span style="color:red"> required </span>    | The path to the start directory of the project.                  |
-| `file_types`  | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
-| `print_all`   | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
+| variable name              | variable type                                |      variable description                                        |
+|----------------------------|----------------------------------------------|------------------------------------------------------------------|
+| `git_path`                 | <span style="color:red"> required </span>    | The path to the start directory of the project.                  |
+| `file_types`               | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
+| `print_all`                | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
+| `white_listed_urls`        | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
+| `white_listed_patterns`    | <span style="color:green"> optional </span>  | A comma separated patterns to exclude during URL checks.         |
 
 ## Demo
 
