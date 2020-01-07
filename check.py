@@ -46,13 +46,15 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
     check all urls extracted from all files in a repository.
     """
     # loop files
+    results = []
     for file in file_paths:
+        file_results = [file]
 
         # collect links from each file
         urls = fileproc.collect_links_from_file(file)
 
         # eliminate white listed urls and white listed white listed patterns
-        if  len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
+        if len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
             urls = [url for url in urls
                     if not white_listed(url,
                                         white_listed_urls,
@@ -61,13 +63,17 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
         # if some links are found, check them
         if urls != []:
             print("\n", file, "\n", "-" * len(file))
-            urlproc.check_urls(file, urls)
+            file_results = urlproc.check_urls(file, urls)
+            results.append(file_results)
 
         # if no urls are found, mention it if required
         else:
             if print_all == "True":
                 print("\n", file, "\n", "-" * len(file))
                 print("No urls found.")
+
+    output = "\n\n".join(results)
+    print(f"::set-output name=urls::{output}")
 
 
 if __name__ == "__main__":
@@ -77,7 +83,8 @@ if __name__ == "__main__":
     file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
     print_all = os.getenv("INPUT_PRINT_ALL", "")
     white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
-    white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
+    white_listed_patterns = os.getenv(
+        "INPUT_WHITE_LISTED_PATTERNS", "").split(",")
 
     # clone project repo
     base_path = clone_repo(git_path)
