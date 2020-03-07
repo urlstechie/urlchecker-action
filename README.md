@@ -39,6 +39,9 @@ jobs:
 
         # A comma separated patterns to exclude during URL checks
         white_listed_patterns: https://superkogito.github.io/tables
+        
+        # choose if the force pass or not 
+        force_pass = True
 ```
 ## Inputs
 
