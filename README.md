@@ -52,6 +52,7 @@ jobs:
 | `print_all`                | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
 | `white_listed_urls`        | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
 | `white_listed_patterns`    | <span style="color:green"> optional </span>  | A comma separated patterns to exclude during URL checks.         |
+| `force_pass`               | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.               |
 
 ## Demo
 
