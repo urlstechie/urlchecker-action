@@ -3,7 +3,6 @@
 import re
 import os
 from core import urlmarker
-from termcolor import colored
 
 
 def check_file_type(file_path, file_types):
@@ -21,8 +20,9 @@ def check_file_type(file_path, file_types):
     ftype = "." + file_path.split(".")[-1]
     if ftype in file_types:
         return True
-    else:
-        return False
+
+    # default return
+    return False
 
 
 def get_file_paths(base_path, file_types):

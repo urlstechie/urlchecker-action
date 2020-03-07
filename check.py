@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import subprocess
 from core import urlproc
 from core import fileproc
 
@@ -10,7 +11,10 @@ def clone_repo(git_path):
     clone and name a git repository.
     """
     base_path = os.path.basename(git_path)
-    os.system("git clone " + git_path + " " + base_path)
+    # clone repo
+    _ = subprocess.run(["git", "clone", git_path, base_path],
+                       stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE)
     return base_path
 
 
@@ -18,7 +22,10 @@ def del_repo(base_path):
     """
     delete repository.
     """
-    os.system("rm -R -f " + base_path)
+    # clone repo
+    _ = subprocess.run(["rm", "-R", "-f", base_path],
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
     return True
 
 
@@ -72,12 +79,19 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
 
 if __name__ == "__main__":
 
+    # # read input variables
+    # git_path = os.getenv("INPUT_GIT_PATH", "")
+    # file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
+    # print_all = os.getenv("INPUT_PRINT_ALL", "")
+    # white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
+    # white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
+
     # read input variables
-    git_path = os.getenv("INPUT_GIT_PATH", "")
-    file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
-    print_all = os.getenv("INPUT_PRINT_ALL", "")
-    white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
-    white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
+    git_path = "https://github.com/NVIDIA/tensorflow-determinism.git"
+    file_types = [".py", ".md"]
+    print_all = "True"
+    white_listed_urls = []
+    white_listed_patterns = []
 
     # clone project repo
     base_path = clone_repo(git_path)

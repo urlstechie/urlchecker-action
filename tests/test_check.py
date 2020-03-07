@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import pytest
+import subprocess
 import configparser
 from core.fileproc import get_file_paths
 from check import clone_repo, del_repo, check_repo
@@ -18,7 +19,8 @@ def test_clone_and_del_repo(git_path):
     assert(base_path == os.path.basename(git_path))
     # delete
     deletion_status = del_repo(base_path)
-    assert(deletion_status == True)
+    if not(deletion_status == True): 
+        raise AssertionError
 
 
 @pytest.mark.parametrize('file_paths', [["tests/test_files/sample_test_file.md"],
@@ -49,8 +51,11 @@ def test_script(config_fname):
     os.environ["INPUT_PRINT_ALL"] = config['DEFAULT']["print_all_test_value"]
     os.environ["INPUT_WHITE_LISTED_URLS"] = config['DEFAULT']["white_listed_test_urls"]
     os.environ["INPUT_WHITE_LISTED_PATTERNS"] =  config['DEFAULT']["white_listed__test_patterns"]
+
     # excute script
-    os.system("python3 check.py")
+    pipe = subprocess.run(["python3", "check.py"],
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE)
 
 
 @pytest.mark.parametrize('local_folder_path', ['./tests/test_files'])

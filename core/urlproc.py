@@ -3,7 +3,6 @@
 import os
 import requests
 from core import urlmarker
-from termcolor import colored
 
 
 def check_response_status_code(url, response, print_format):
@@ -16,9 +15,9 @@ def check_response_status_code(url, response, print_format):
         print_format (str) : format to print the logs according to.
     """
     if response.status_code == 200:
-        print(print_format % (url, colored(".", "green")))
+        print(print_format % (url, "\x1b[31m" + "." + "\x1b[0m"))
     else:
-        print(print_format % (url, colored("x", "red")))
+        print(print_format % (url, "\x1b[32m" +"x" + "\x1b[0m"))
 
 
 def check_urls(file, urls):
@@ -48,7 +47,7 @@ def check_urls(file, urls):
             print(e)
 
         except requests.exceptions.ConnectionError:
-            print(print_format % (url, colored("x", "red")))
+            print(print_format % (url, "\x1b[32m" +"x" + "\x1b[0m"))
 
         except Exception as e:
             print(e.message)
