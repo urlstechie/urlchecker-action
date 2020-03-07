@@ -5,7 +5,7 @@ import requests
 from core import urlmarker
 
 
-def check_response_status_code(url, response, print_format):
+def check_response_status_code(url, response, print_format, check_results):
     """
     check and print response status of an input url.
 
@@ -16,8 +16,10 @@ def check_response_status_code(url, response, print_format):
     """
     if response.status_code == 200:
         print(print_format % (url, "\x1b[31m" + "." + "\x1b[0m"))
+        check_results[0].append(url)
     else:
         print(print_format % (url, "\x1b[32m" +"x" + "\x1b[0m"))
+        check_results[1].append(url)
 
 
 def check_urls(file, urls):
@@ -28,6 +30,9 @@ def check_urls(file, urls):
         file  (str) : path to file.
         urls (list) : list of urls to check.
     """
+    # init results list
+    check_results = [[], []]
+
     # get longest url size
     long_url = str(max([len(url) for url in urls]))
 
@@ -39,9 +44,8 @@ def check_urls(file, urls):
         url_termination = "." + os.path.basename(url).split(".")[-1]
 
         try:
-            response = requests.get(
-                url, stream=True, allow_redirects=True, timeout=5)
-            check_response_status_code(url, response, print_format)
+            response = requests.get(url, stream=True, allow_redirects=True, timeout=5)
+            check_response_status_code(url, response, print_format, check_results)
 
         except requests.exceptions.Timeout as e:
             print(e)
@@ -51,3 +55,5 @@ def check_urls(file, urls):
 
         except Exception as e:
             print(e.message)
+
+        return check_results

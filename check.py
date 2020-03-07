@@ -68,7 +68,7 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
         # if some links are found, check them
         if urls != []:
             print("\n", file, "\n", "-" * len(file))
-            urlproc.check_urls(file, urls)
+            check_results = urlproc.check_urls(file, urls)
 
         # if no urls are found, mention it if required
         else:
@@ -79,19 +79,13 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns):
 
 if __name__ == "__main__":
 
-    # # read input variables
-    # git_path = os.getenv("INPUT_GIT_PATH", "")
-    # file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
-    # print_all = os.getenv("INPUT_PRINT_ALL", "")
-    # white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
-    # white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
-
     # read input variables
-    git_path = "https://github.com/NVIDIA/tensorflow-determinism.git"
-    file_types = [".py", ".md"]
-    print_all = "True"
-    white_listed_urls = []
-    white_listed_patterns = []
+    git_path = os.getenv("INPUT_GIT_PATH", "")
+    file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
+    print_all = os.getenv("INPUT_PRINT_ALL", "")
+    white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
+    white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
+    force_pass = os.getenv("INPUT_FORCE_PASS")
 
     # clone project repo
     base_path = clone_repo(git_path)
@@ -100,8 +94,16 @@ if __name__ == "__main__":
     file_paths = fileproc.get_file_paths(base_path, file_types)
 
     # check repo urls
-    check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns)
+    check_results = check_repo(file_paths, print_all,
+                               white_listed_urls, white_listed_patterns)
 
     # delete repo when done
     deletion_status = del_repo(base_path)
-    print("Done.")
+
+    # exit
+    if (force_pass == "False") and (len(check_results[1]) > 0) :
+        print("Done.")
+        exit(False)
+    else :
+        print("Done.")
+        exit(True)
