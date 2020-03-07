@@ -19,7 +19,7 @@ def test_clone_and_del_repo(git_path):
     assert(base_path == os.path.basename(git_path))
     # delete
     deletion_status = del_repo(base_path)
-    if not(deletion_status == True): 
+    if not(deletion_status): 
         raise AssertionError
 
 

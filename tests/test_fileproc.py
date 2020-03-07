@@ -12,10 +12,14 @@ def test_check_file_type(file_path, file_types):
     test check file types
     """
     output = check_file_type(file_path, file_types)
-    assert(output == True)
+    if not output:
+        raise AssertionError
+
     # check for false
     output = check_file_type(file_path + ".nonesense", file_types)
-    assert(output == False)
+    if output:
+        raise AssertionError
+
 
 @pytest.mark.parametrize('base_path', ["tests/test_files"])
 @pytest.mark.parametrize('file_types', [[".md", ".py"]])
@@ -37,6 +41,7 @@ def test_get_file_paths(base_path, file_types):
                       "tests/test_files/sample_test_file.md"]]
     # assert
     assert(file_paths in expected_paths)
+
 
 @pytest.mark.parametrize('file_path', ["tests/test_files/sample_test_file.md",
                                        "tests/test_files/sample_test_file.md"])
