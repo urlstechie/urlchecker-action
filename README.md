@@ -32,16 +32,22 @@ jobs:
         file_types: .md,.py,.rst
 
         # Choose whether to include file with no URLs in the prints.
-        print_all: False
+        print_all: false
+
+        # The timeout seconds to provide to requests, defaults to 5 seconds
+        timeout: 5
+
+        # How many times to retry a failed request (each is logged, defaults to 1)
+        retry_count: 3
 
         # A comma separated links to exclude during URL checks
-        white_listed_urls: https://superkogito.github.io/figures/fig2.html, https://superkogito.github.io/figures/fig4.html
+        white_listed_urls: https://superkogito.github.io/figures/fig2.html,https://superkogito.github.io/figures/fig4.html
 
         # A comma separated patterns to exclude during URL checks
         white_listed_patterns: https://superkogito.github.io/tables
         
         # choose if the force pass or not 
-        force_pass = True
+        force_pass = true
 ```
 ## Inputs
 
@@ -50,9 +56,11 @@ jobs:
 | `git_path`                 | <span style="color:red"> required </span>    | The path to the start directory of the project.                  |
 | `file_types`               | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
 | `print_all`                | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
+| `retry_count`              | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
+| `timeout`                  | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
 | `white_listed_urls`        | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
 | `white_listed_patterns`    | <span style="color:green"> optional </span>  | A comma separated patterns to exclude during URL checks.         |
-| `force_pass`               | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.               |
+| `force_pass`               | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.             |
 
 ## Demo
 
