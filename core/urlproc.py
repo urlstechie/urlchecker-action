@@ -96,7 +96,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
             retry_count-=1
 
             # Break from the loop if we have success, update user
-            do_retry = check_response_status_code(response, print_format)
+            do_retry = check_response_status_code(url, response, print_format)
 
             # If we try again, pause for retry seconds and update retry seconds
             if do_retry:
