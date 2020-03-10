@@ -14,7 +14,7 @@ def record_response(url, response, check_results):
     Args:
         url          (str) : url text.
         response    (list) : request response from the url request.
-        print_format (str) : format to print the logs according to.
+        check_results (list) : list of lists, success appended to 0, failure to 1.
     """
     # response of None indicates a failure
     if not response:
@@ -29,7 +29,7 @@ def record_response(url, response, check_results):
         check_results[1].append(url)
 
 
-def check_response_status_code(url, response, print_format):
+def check_response_status_code(url, response):
     """
     check response status of an input url. Returns a boolean
     to indicate if retry is needed.
@@ -40,16 +40,16 @@ def check_response_status_code(url, response, print_format):
     """
     # Case 1: response is None indicating triggered error
     if not response:
-        print(print_format % (url, "\x1b[31m" + "." + "\x1b[0m"))
+        print("\x1b[32m" + url + "\x1b[0m")
         return False
 
     # Case 2: succcess!
     if response.status_code == 200:
-        print(print_format % (url, "\x1b[31m" + "." + "\x1b[0m"))
+        print("\x1b[31m" + url + "\x1b[0m")
         return False
 
     # Case 3: failure of some kind
-    print(print_format % (url, "\x1b[32m" +"x" + "\x1b[0m"))
+    print("\x1b[32m" + url + "\x1b[0m")
     return True
 
 
@@ -65,12 +65,6 @@ def check_urls(file, urls, retry_count=1, timeout=5):
     # init results list (first is success, second is issue)
     check_results = [[], []]
 
-    # get longest url size
-    long_url = str(max([len(url) for url in urls]))
-
-    # define orint format
-    print_format = "%" + long_url + "s %10s"
-
     # we will double the time for retry each time
     retry_seconds = 2
     do_retry = True
@@ -82,13 +76,13 @@ def check_urls(file, urls, retry_count=1, timeout=5):
         while retry_count > 0 and do_retry:
             response = None            
             try:
-                response = requests.get(url, stream=True, allow_redirects=True, timeout=timeout)
+                response = requests.get(url, timeout=timeout)
 
             except requests.exceptions.Timeout as e:
                 print(e)
 
             except requests.exceptions.ConnectionError:
-                print(print_format % (url, "\x1b[32m" +"x" + "\x1b[0m"))
+                print("\x1b[32m" + url + "\x1b[0m")
 
             except Exception as e:
                 print(e.message)
@@ -96,7 +90,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
             retry_count-=1
 
             # Break from the loop if we have success, update user
-            do_retry = check_response_status_code(url, response, print_format)
+            do_retry = check_response_status_code(url, response)
 
             # If we try again, pause for retry seconds and update retry seconds
             if do_retry:

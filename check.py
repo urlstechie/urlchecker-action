@@ -108,8 +108,9 @@ if __name__ == "__main__":
 
     # exit
     if (force_pass == "false") and (len(check_results[1]) > 0) :
-        print("Done.")
+        print("Done. The following URLS did not pass:")
+        print("\n".join(check_results[1]))
         exit(False)
     else :
-        print("Done.")
+        print("Done. All URLS passed.")
         exit(True)
