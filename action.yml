@@ -5,27 +5,37 @@ description: "Automatically check for broken links in a project files. This incl
 inputs:
   git_path:
     description: "The project base path."
-    required: True
+    required: true
 
   file_types:
     description: "A comma-separated list of file types to cover in the URL checks"
-    required: False
+    required: false
     default: ".md,.py,.rst,.html"
 
   print_all:
     description: "Choose whether to include file with no URLs in the prints."
-    required: False
-    default: False
+    required: false
+    default: false
+
+  retry_count:
+    description: "If a request fails, retry this number of times. Defaults to 1"
+    required: false
+    default: 1
+
+  timeout:
+    description: "The timeout (seconds) to provide to requests to wait for a response."
+    required: false
+    default: 5
 
   white_listed_urls:
     description: "A comma seperated links to exclude during URL checks."
-    required: False
-    default: False
+    required: false
+    default: false
 
   white_listed_patterns:
     description: "A comma seperated patterns to exclude during URL checks."
-    required: False
-    default: False
+    required: false
+    default: false
 
 runs:
   using: "docker"
