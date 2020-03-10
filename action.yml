@@ -30,12 +30,12 @@ inputs:
   white_listed_urls:
     description: "A comma seperated links to exclude during URL checks."
     required: false
-    default: false
+    default: ""
 
   white_listed_patterns:
     description: "A comma seperated patterns to exclude during URL checks."
     required: false
-    default: false
+    default: ""
 
 runs:
   using: "docker"

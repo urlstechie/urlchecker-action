@@ -40,16 +40,16 @@ def check_response_status_code(url, response):
     """
     # Case 1: response is None indicating triggered error
     if not response:
-        print("\x1b[32m" + url + "\x1b[0m")
+        print("\x1b[31m" + url + "\x1b[0m")
         return False
 
     # Case 2: succcess!
     if response.status_code == 200:
-        print("\x1b[31m" + url + "\x1b[0m")
+        print("\x1b[32m" + url + "\x1b[0m")
         return False
 
     # Case 3: failure of some kind
-    print("\x1b[32m" + url + "\x1b[0m")
+    print("\x1b[31m" + url + "\x1b[0m")
     return True
 
 
@@ -89,7 +89,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
                 print(e)
 
             except requests.exceptions.ConnectionError:
-                print("\x1b[32m" + url + "\x1b[0m")
+                print("\x1b[31m" + url + "\x1b[0m")
 
             except Exception as e:
                 print(e.message)
