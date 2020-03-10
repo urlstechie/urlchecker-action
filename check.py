@@ -94,6 +94,10 @@ if __name__ == "__main__":
     retry_count = int(os.getenv("INPUT_RETRY_COUNT", 1))
     timeout = int(os.getenv("INPUT_TIMEOUT", 5)) # seconds
 
+    # Are whitelisted urls provided, or an empty string?
+    white_listed_urls = [x for x in white_listed_urls if x not in ["", None]]
+    white_listed_patterns = [x for x in white_listed_patterns if x not in ["", None]]
+
     # Alert user about settings
     print("   git path: %s" % git_path)
     print(" file types: %s" % file_types)
