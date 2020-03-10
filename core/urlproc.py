@@ -64,6 +64,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
     """
     # init results list (first is success, second is issue)
     check_results = [[], []]
+    seen = set()
 
     # we will double the time for retry each time
     retry_seconds = 2
@@ -72,6 +73,12 @@ def check_urls(file, urls, retry_count=1, timeout=5):
     # check links
     for url in [url for url in urls if "http" in url]:
         url_termination = "." + os.path.basename(url).split(".")[-1]
+
+        # No need to test the same URL twice
+        if url in seen:
+            continue
+
+        seen.add(url)
 
         while retry_count > 0 and do_retry:
             response = None            

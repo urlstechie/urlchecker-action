@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
+import sys
 from core import urlproc
 from core import fileproc
 
@@ -93,6 +94,16 @@ if __name__ == "__main__":
     retry_count = int(os.getenv("INPUT_RETRY_COUNT", 1))
     timeout = int(os.getenv("INPUT_TIMEOUT", 5)) # seconds
 
+    # Alert user about settings
+    print("   git path: %s" % git_path)
+    print(" file types: %s" % file_types)
+    print("  print all: %s" % print_all)
+    print("  whistlist: %s" % white_listed_urls)
+    print("   patterns: %s" % white_listed_patterns)
+    print(" force pass: %s" % force_pass)
+    print("retry count: %s" % retry_count)
+    print("    timeout: %s" % timeout)
+
     # clone project repo
     base_path = clone_repo(git_path)
 
@@ -110,7 +121,7 @@ if __name__ == "__main__":
     if (force_pass == "false") and (len(check_results[1]) > 0) :
         print("Done. The following URLS did not pass:")
         print("\n".join(check_results[1]))
-        exit(False)
+        sys.exit(1)
     else :
         print("Done. All URLS passed.")
-        exit(True)
+        sys.exit(0)
