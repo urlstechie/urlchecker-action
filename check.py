@@ -52,6 +52,8 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
     """
     check all urls extracted from all files in a repository.
     """
+    check_results = []
+
     # loop files
     for file in file_paths:
 
@@ -75,6 +77,8 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
             if print_all == "true":
                 print("\n", file, "\n", "-" * len(file))
                 print("No urls found.")
+
+    return check_results
 
 
 if __name__ == "__main__":

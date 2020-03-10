@@ -21,7 +21,7 @@ def record_response(url, response, check_results):
         check_results[1].append(url)
 
     # success
-    if response.status_code == 200:
+    elif response.status_code == 200:
         check_results[0].append(url)
 
     # Any other error
@@ -100,6 +100,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
 
             # If we try again, pause for retry seconds and update retry seconds
             if do_retry:
+                print("Retry %s for %s" %(retry_count, url))
                 time.sleep(retry_seconds)
                 retry_seconds = retry_seconds * 2
   
