@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
+import sys
 from core import urlproc
 from core import fileproc
 
@@ -52,6 +53,8 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
     """
     check all urls extracted from all files in a repository.
     """
+    check_results = []
+
     # loop files
     for file in file_paths:
 
@@ -76,6 +79,8 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
                 print("\n", file, "\n", "-" * len(file))
                 print("No urls found.")
 
+    return check_results
+
 
 if __name__ == "__main__":
 
@@ -88,6 +93,20 @@ if __name__ == "__main__":
     force_pass = os.getenv("INPUT_FORCE_PASS", "false").lower()
     retry_count = int(os.getenv("INPUT_RETRY_COUNT", 1))
     timeout = int(os.getenv("INPUT_TIMEOUT", 5)) # seconds
+
+    # Are whitelisted urls provided, or an empty string?
+    white_listed_urls = [x for x in white_listed_urls if x not in ["", None]]
+    white_listed_patterns = [x for x in white_listed_patterns if x not in ["", None]]
+
+    # Alert user about settings
+    print("   git path: %s" % git_path)
+    print(" file types: %s" % file_types)
+    print("  print all: %s" % print_all)
+    print("  whistlist: %s" % white_listed_urls)
+    print("   patterns: %s" % white_listed_patterns)
+    print(" force pass: %s" % force_pass)
+    print("retry count: %s" % retry_count)
+    print("    timeout: %s" % timeout)
 
     # clone project repo
     base_path = clone_repo(git_path)
@@ -104,8 +123,9 @@ if __name__ == "__main__":
 
     # exit
     if (force_pass == "false") and (len(check_results[1]) > 0) :
-        print("Done.")
-        exit(False)
+        print("Done. The following URLS did not pass:")
+        print("\n".join(check_results[1]))
+        sys.exit(1)
     else :
-        print("Done.")
-        exit(True)
+        print("Done. All URLS passed.")
+        sys.exit(0)
