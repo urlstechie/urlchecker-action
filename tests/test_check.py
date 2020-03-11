@@ -19,7 +19,8 @@ def test_clone_and_del_repo(git_path):
     assert(base_path == os.path.basename(git_path))
 
     # delete should have return code of 0 (success)
-    assert del_repo(base_path) == 0
+    if not del_repo(base_path) == 0:
+        raise AssertionError
 
 
 @pytest.mark.parametrize('file_paths', [["tests/test_files/sample_test_file.md"],
