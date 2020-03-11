@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import random
 import requests
 import time
 from core import urlmarker
@@ -54,6 +55,37 @@ def check_response_status_code(url, response):
     return True
 
 
+def get_user_agent():
+    """Return a randomly chosen user agent for requests
+    """
+    agents = [
+        ('Mozilla/5.0 (X11; Linux x86_64) '
+         'AppleWebKit/537.36 (KHTML, like Gecko) '
+         'Chrome/57.0.2987.110 '
+         'Safari/537.36'),  # chrome
+        ('Mozilla/5.0 (X11; Linux x86_64) '
+         'AppleWebKit/537.36 (KHTML, like Gecko) '
+         'Chrome/61.0.3163.79 '
+         'Safari/537.36'),  # chrome
+        ('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) '
+         'Gecko/20100101 '
+         'Firefox/55.0'),  # firefox
+        ('Mozilla/5.0 (X11; Linux x86_64) '
+         'AppleWebKit/537.36 (KHTML, like Gecko) '
+         'Chrome/61.0.3163.91 '
+         'Safari/537.36'),  # chrome
+        ('Mozilla/5.0 (X11; Linux x86_64) '
+         'AppleWebKit/537.36 (KHTML, like Gecko) '
+         'Chrome/62.0.3202.89 '
+         'Safari/537.36'),  # chrome
+        ('Mozilla/5.0 (X11; Linux x86_64) '
+         'AppleWebKit/537.36 (KHTML, like Gecko) '
+         'Chrome/63.0.3239.108 '
+         'Safari/537.36'),  # chrome
+    ]
+    return random.choice(agents)
+
+
 def check_urls(file, urls, retry_count=1, timeout=5):
     """
     check urls extracted from a certain file and print the checks results.
@@ -69,6 +101,10 @@ def check_urls(file, urls, retry_count=1, timeout=5):
 
     # we will double the time for retry each time
     retry_seconds = 2
+
+    # Some sites will return 403 if it's not a "human" user agent
+    user_agent = get_user_agent()
+    headers = {'User-Agent': user_agent}
 
     # check links
     for url in [url for url in urls if "http" in url]:
@@ -91,7 +127,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
         while rcount > 0 and do_retry:
             response = None
             try:
-                response = requests.get(url, timeout=pause)
+                response = requests.get(url, timeout=pause, headers=headers)
 
             except requests.exceptions.Timeout as e:
                 print(e)
