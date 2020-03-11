@@ -31,6 +31,9 @@ jobs:
     - name: URLs-checker
       uses: urlstechie/URLs-checker@0.1.5
       with:
+        # A subfolder or path to navigate to in the present or cloned repository
+        subfolder: docs
+
         # A comma-separated list of file types to cover in the URL checks
         file_types: .md,.py,.rst
 
@@ -80,6 +83,9 @@ jobs:
         # If a git_path is defined to clone, clone this branch (defaults to master)
         branch: devel
 
+        # A subfolder or path to navigate to in the present or cloned repository
+        subfolder: docs
+
         # Delete the cloned repository after running URLchecked (default is false)
         cleanup: true
 
@@ -112,6 +118,7 @@ jobs:
 | `git_path`                 | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD      |
 | `branch`                   | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master          |
 | `cleanup`                  | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)         |
+| `subfolder`                | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check            |
 | `file_types`               | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
 | `print_all`                | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
 | `retry_count`              | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
