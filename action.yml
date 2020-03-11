@@ -4,8 +4,18 @@ description: "Automatically check for broken links in a project files. This incl
 
 inputs:
   git_path:
-    description: "The project base path."
-    required: true
+    description: "A project to clone. If not provided, assumes already cloned in the present working directory."
+    required: false
+
+  branch:
+    description: "If a project (git_path) is defined, use this branch. Defaults to master"
+    required: false
+    default: master
+
+  cleanup:
+    description: "Cleanup (delete) repository to check after doing so (appropriate for when clone is done)"
+    required: false
+    default: false
 
   file_types:
     description: "A comma-separated list of file types to cover in the URL checks"

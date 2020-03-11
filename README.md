@@ -11,7 +11,56 @@ A GitHub action to collect and check URLs in a project (code and documentation).
 The action aims at detecting and reporting broken links.
 
 # How to use?
-## Example
+
+## Example with Checkout
+
+For most use cases, you will want to use the git repository that is being checked
+for a GitHub actions, and we do this by way of the [actions/checkout](https://github.com/actions/checkout) action.
+
+```
+name: Check URLs
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: URLs-checker
+      uses: urlstechie/URLs-checker@0.1.5
+      with:
+        # A comma-separated list of file types to cover in the URL checks
+        file_types: .md,.py,.rst
+
+        # Choose whether to include file with no URLs in the prints.
+        print_all: false
+
+        # The timeout seconds to provide to requests, defaults to 5 seconds
+        timeout: 5
+
+        # How many times to retry a failed request (each is logged, defaults to 1)
+        retry_count: 3
+
+        # A comma separated links to exclude during URL checks
+        white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
+
+        # A comma separated patterns to exclude during URL checks
+        white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+
+        # choose if the force pass or not
+        force_pass = true
+```
+
+
+## Example with Custom Clone
+
+It could, however, be the case that you've set up a repository with one or more uses of the URLChecker
+that must clone one or more repos (possibly with varying branches) before doing the check.
+In this case, you might want to define `git_path` and `branch` for each section.
+An example is below:
+
 ```
 name: Check URLs
 
@@ -23,10 +72,16 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: SuperKogito/URLs-checker@0.1.5
+      uses: urlstechie/URLs-checker@0.1.5
       with:
-        # The project base path.
+        # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/urlstechie/URLs-checker-test-repo
+
+        # If a git_path is defined to clone, clone this branch (defaults to master)
+        branch: devel
+
+        # Delete the cloned repository after running URLchecked (default is false)
+        cleanup: true
 
         # A comma-separated list of file types to cover in the URL checks
         file_types: .md,.py,.rst
@@ -43,19 +98,20 @@ jobs:
         # A comma separated links to exclude during URL checks
         white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
-
         # A comma separated patterns to exclude during URL checks
         white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
-
 
         # choose if the force pass or not
         force_pass = true
 ```
 ## Inputs
 
+
 | variable name              | variable type                                |      variable description                                        |
 |----------------------------|----------------------------------------------|------------------------------------------------------------------|
-| `git_path`                 | <span style="color:red"> required </span>    | The path to the start directory of the project.                  |
+| `git_path`                 | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD      |
+| `branch`                   | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master          |
+| `cleanup`                  | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)         |
 | `file_types`               | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
 | `print_all`                | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
 | `retry_count`              | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
