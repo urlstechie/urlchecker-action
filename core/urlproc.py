@@ -68,10 +68,14 @@ def check_urls(file, urls, retry_count=1, timeout=5):
 
     # we will double the time for retry each time
     retry_seconds = 2
-    do_retry = True
 
     # check links
     for url in [url for url in urls if "http" in url]:
+        # init do retrails and retrails counts
+        do_retry = True
+        rcount = retry_count
+
+        # get url termination
         url_termination = "." + os.path.basename(url).split(".")[-1]
 
         # No need to test the same URL twice
@@ -79,9 +83,8 @@ def check_urls(file, urls, retry_count=1, timeout=5):
             continue
 
         seen.add(url)
-
-        while retry_count > 0 and do_retry:
-            response = None            
+        while rcount > 0 and do_retry:
+            response = None
             try:
                 response = requests.get(url, timeout=timeout)
 
@@ -93,8 +96,9 @@ def check_urls(file, urls, retry_count=1, timeout=5):
 
             except Exception as e:
                 print(e.message)
- 
-            retry_count-=1
+
+            # decrement retrials count
+            rcount-=1
 
             # Break from the loop if we have success, update user
             do_retry = check_response_status_code(url, response)
@@ -104,7 +108,7 @@ def check_urls(file, urls, retry_count=1, timeout=5):
                 print("Retry %s for %s" %(retry_count, url))
                 time.sleep(retry_seconds)
                 retry_seconds = retry_seconds * 2
-  
+
         # When we break from while, we record final response
         record_response(url, response, check_results)
 
