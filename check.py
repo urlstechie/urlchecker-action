@@ -62,7 +62,7 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
         urls = fileproc.collect_links_from_file(file)
 
         # eliminate white listed urls and white listed white listed patterns
-        if  len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
+        if len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
             urls = [url for url in urls
                     if not white_listed(url,
                                         white_listed_urls,
@@ -124,8 +124,9 @@ if __name__ == "__main__":
     # exit
     if (force_pass == "false") and (len(check_results[1]) > 0) :
         print("Done. The following URLS did not pass:")
-        print("\n".join(check_results[1]))
+        print("\x1b[31m" + "\n".join(check_results[1]) + "\x1b[0m")
         sys.exit(1)
+
     else :
         print("Done. All URLS passed.")
         sys.exit(0)
