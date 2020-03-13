@@ -65,5 +65,5 @@ def collect_links_from_file(file_path):
 
     # get and filter urls
     urls = re.findall(urlmarker.URL_REGEX, content)
-    urls = [url for url in urls if "http" in url]
+    urls = [url.strip() for url in urls if "http" in url]
     return urls
