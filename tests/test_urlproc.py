@@ -12,4 +12,4 @@ def test_check_urls(file):
     test check urls check function.
     """
     urls = collect_links_from_file(file)
-    check_urls(file, urls)
+    check_urls(file, urls, check_results=[[],[]])

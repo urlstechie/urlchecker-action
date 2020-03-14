@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import sys
 import pytest
 import subprocess
 import configparser
@@ -13,7 +14,10 @@ def test_clone_and_del_repo(git_path):
     """
     test clone and del repo function.
     """
-    # test correct functioning
+    # del repo if it exisits
+    if os.path.exists(os.path.basename(git_path)):
+        del_repo(os.path.basename(git_path))
+
     # clone
     base_path = clone_repo(git_path)
     assert(base_path == os.path.basename(git_path))
@@ -86,3 +90,46 @@ def test_locally(local_folder_path, config_fname):
     # check repo urls
     check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns)
     print("Done.")
+
+
+@pytest.mark.parametrize('retry_count', [1, 3])
+def test_check_generally(retry_count):
+    # init vars
+    git_path = "https://github.com/SuperKogito/SuperKogito.github.io.git"
+    file_types = [".py", ".md"]
+    print_all = "True"
+    white_listed_urls = ["https://superkogito.github.io/figures/fig2.html",
+                         "https://superkogito.github.io/figures/fig4.html"]
+    white_listed_patterns = ["https://superkogito.github.io/tables"]
+    timeout = 1
+    force_pass = "false"
+
+    # del repo if it exisits
+    if os.path.exists(os.path.basename(git_path)):
+        del_repo(os.path.basename(git_path))
+
+    # clone repo
+    base_path = clone_repo(git_path)
+
+    # get all file paths
+    file_paths = get_file_paths(base_path, file_types)
+
+    # check repo urls
+    check_results = check_repo(file_paths, print_all, white_listed_urls,
+                               white_listed_patterns, retry_count, timeout)
+
+    # exit
+    if len(check_results) == 0:
+        print("Done. No links were collected.")
+        sys.exit(0)
+
+    elif force_pass == "false" and len(check_results[1]) > 0 :
+        print("Done. The following URLS did not pass:")
+        print("\x1b[31m" + "\n".join(check_results[1]) + "\x1b[0m")
+        if retry_count == 1:
+            return True
+
+    else :
+        print("Done. All URLS passed.")
+        if retry_count == 3:
+            return True
