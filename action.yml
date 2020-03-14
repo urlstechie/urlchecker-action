@@ -47,6 +47,11 @@ inputs:
     required: false
     default: ""
 
+  white_listed_files:
+    description: "A comma seperated list of paths or patterns to exclude during URL checks."
+    required: false
+    default: ""
+
 runs:
   using: "docker"
   image: "Dockerfile"

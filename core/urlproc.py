@@ -7,6 +7,19 @@ import requests
 from core import urlmarker
 
 
+def remove_empty(file_list):
+    """
+    Given a file list, return only those that aren't empty string or None.
+
+    Args:
+        file_list (list): a list of files to remove None or empty string from.
+
+    Returns:
+        list of (non None or empty string) contents.
+    """
+    return [x for x in file_list if x not in ["", None]]
+
+
 def record_response(url, response, check_results):
     """
     record response status of an input url. This function is run after success,
@@ -38,6 +51,9 @@ def check_response_status_code(url, response):
     Args:
         url          (str) : url text.
         response    (list) : request response from the url request.
+
+    Returns:
+        boolean to indicate success (True) or fail (False).
     """
     # Case 1: response is None indicating triggered error
     if not response:
@@ -56,6 +72,9 @@ def check_response_status_code(url, response):
 
 def get_user_agent():
     """Return a randomly chosen user agent for requests
+
+    Returns:
+        user agent string to include with User-Agent.
     """
     agents = [
         ('Mozilla/5.0 (X11; Linux x86_64) '
@@ -132,9 +151,8 @@ def check_urls(file, urls, check_results, retry_count=1, timeout=5):
             except requests.exceptions.Timeout as e:
                 print(e)
 
-            except requests.exceptions.ConnectionError:
-                rcount-=1
-                continue
+            except requests.exceptions.ConnectionError as e:
+                print(e)
 
             except Exception as e:
                 print(e)

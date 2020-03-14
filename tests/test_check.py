@@ -6,7 +6,7 @@ import pytest
 import subprocess
 import configparser
 from core.fileproc import get_file_paths
-from check import clone_repo, del_repo, check_repo
+from check import clone_repo, del_repo, check_repo, get_branch
 
 
 @pytest.mark.parametrize('git_path', ["https://github.com/SuperKogito/SuperKogito.github.io"])
@@ -24,6 +24,32 @@ def test_clone_and_del_repo(git_path):
 
     # delete should have return code of 0 (success)
     if not del_repo(base_path) == 0:
+        raise AssertionError
+
+
+def test_get_branch():
+    """
+    test getting branch from environment or default
+    """
+    # Unset defaults to master
+    branch = get_branch()
+    if branch != "master":
+        raise AssertionError
+
+    # Set both GitHub input variable and ref (ref takes priority)
+    for pair in [["INPUT_BRANCH", "devel"], ["GITHUB_REF", "refs/heads/branchy"]]:
+        os.environ[pair[0]] = pair[1]
+        os.putenv(pair[0], pair[1])
+
+    # Second preference should be for INPUT_BRANCH
+    branch = get_branch()
+    if branch != "devel":
+        raise AssertionError
+
+    del os.environ['INPUT_BRANCH']
+    os.unsetenv("INPUT_BRANCH")
+    branch = get_branch()
+    if branch != "branchy":
         raise AssertionError
 
 
