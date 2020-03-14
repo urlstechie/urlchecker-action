@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import time
 import random
 import requests
-import time
 from core import urlmarker
 
 
@@ -29,7 +29,6 @@ def record_response(url, response, check_results):
     else:
         check_results[1].append(url)
 
-    return check_results
 
 def check_response_status_code(url, response):
     """
@@ -86,21 +85,19 @@ def get_user_agent():
     return random.choice(agents)
 
 
-def check_urls(file, urls, retry_count=1, timeout=5):
+def check_urls(file, urls, check_results, retry_count=1, timeout=5):
     """
     check urls extracted from a certain file and print the checks results.
 
     Args:
-        file  (str) : path to file.
-        urls (list) : list of urls to check.
-        retry_count (int): a number of retries to issue (defaults to 1, no retry)
+        file           (str) : path to file.
+        urls          (list) : list of urls to check.
+        check_results (list) : a list containing a list of succesfully checked links and errenous links.
+        retry_count    (int) : a number of retries to issue (defaults to 1, no retry).
+        timeout        (int) : a timeout in seconds for blocking operations like the connection attempt.
     """
-    # init results list (first is success, second is issue)
-    check_results = [[], []]
+    # init seen urls list
     seen = set()
-
-    # we will double the time for retry each time
-    retry_seconds = 2
 
     # Some sites will return 403 if it's not a "human" user agent
     user_agent = get_user_agent()
@@ -112,6 +109,9 @@ def check_urls(file, urls, retry_count=1, timeout=5):
         # init do retrails and retrails counts
         do_retry = True
         rcount = retry_count
+
+        # we will double the time for retry each time
+        retry_seconds = 2
 
         # With retry, increase timeout by a second
         pause = timeout
@@ -133,10 +133,11 @@ def check_urls(file, urls, retry_count=1, timeout=5):
                 print(e)
 
             except requests.exceptions.ConnectionError:
+                rcount-=1
                 continue
 
             except Exception as e:
-                print(e.message)
+                print(e)
 
             # decrement retrials count
             rcount-=1
@@ -145,13 +146,12 @@ def check_urls(file, urls, retry_count=1, timeout=5):
             do_retry = check_response_status_code(url, response)
 
             # If we try again, pause for retry seconds and update retry seconds
-            if do_retry:
-                print("Retry %s for %s, timeout %s" %(rcount, url, pause))
+            if (rcount > 0) and  do_retry:
+                # keep this only for debugging
+                # print("Retry n° %s for %s, with timeout of %s seconds." % (retry_count - rcount, url, pause))
                 time.sleep(retry_seconds)
                 retry_seconds = retry_seconds * 2
                 pause += 1
 
         # When we break from while, we record final response
-        check_results = record_response(url, response, check_results)
-
-    return check_results
+        record_response(url, response, check_results)
