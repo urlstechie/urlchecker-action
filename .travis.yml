@@ -29,5 +29,5 @@ after_success:
   - codecov
   - coveralls
   - coverage xml
-  - export CODACY_PROJECT_TOKEN=88a615a4de8445e1ab801be6962f57ef
+  - export CODACY_PROJECT_TOKEN=d4795dc96ed74f7c8415a2e8c3c42467
   - python-codacy-coverage -r coverage.xml
