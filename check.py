@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
-import subprocess
 import sys
+import subprocess
 from core import urlproc
 from core import fileproc
 
@@ -17,7 +17,7 @@ def clone_repo(git_path, branch="master"):
                            stderr=subprocess.PIPE)
 
     if result.returncode != 0:
-        sys.exit("Issue with cloning branch %s of %s" %(branch, git_path))
+        sys.exit("Issue with cloning branch %s of %s" % (branch, git_path))
 
     return base_path
 
@@ -56,7 +56,8 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
     """
     check all urls extracted from all files in a repository.
     """
-    check_results = []
+    # init results list (first is success, second is issue)
+    check_results = [[], []]
 
     # loop files
     for file in file_paths:
@@ -74,7 +75,7 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
         # if some links are found, check them
         if urls:
             print("\n", file, "\n", "-" * len(file))
-            check_results = urlproc.check_urls(file, urls, retry_count, timeout)
+            urlproc.check_urls(file, urls, check_results, retry_count, timeout)
 
         # if no urls are found, mention it if required
         else:
@@ -110,7 +111,7 @@ if __name__ == "__main__":
     git_path = os.getenv("INPUT_GIT_PATH", "")
     branch = get_branch()
     subfolder = os.getenv("INPUT_SUBFOLDER", "")
-    cleanup = os.getenv("INPUT_CLEANUP", "false").lower()   
+    cleanup = os.getenv("INPUT_CLEANUP", "false").lower()
     file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
     print_all = os.getenv("INPUT_PRINT_ALL", "").lower()
     white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
@@ -140,6 +141,7 @@ if __name__ == "__main__":
     print("retry count: %s" % retry_count)
     print("    timeout: %s" % timeout)
 
+
     # If a custom base path is provided, clone and use it
     if git_path not in ["", None]:
         base_path = clone_repo(git_path, branch)
@@ -163,11 +165,15 @@ if __name__ == "__main__":
         del_repo(base_path)
 
     # exit
-    if force_pass == "false" and len(check_results[1]) > 0 :
+    if len(check_results) == 0:
+        print("Done. No links were collected.")
+        sys.exit(0)
+
+    elif force_pass == "false" and len(check_results[1]) > 0 :
         print("Done. The following URLS did not pass:")
         print("\x1b[31m" + "\n".join(check_results[1]) + "\x1b[0m")
         sys.exit(1)
 
-    else:
+    else :
         print("Done. All URLS passed.")
         sys.exit(0)
