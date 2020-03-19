@@ -52,7 +52,12 @@ def white_listed(url, white_listed_urls, white_listed_patterns):
     return False
 
 
-def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, retry_count=1, timeout=5):
+def check_repo(file_paths,
+               print_all,
+               white_listed_urls,
+               white_listed_patterns,
+               retry_count=1,
+               timeout=5):
     """
     check all urls extracted from all files in a repository.
     """
@@ -62,11 +67,11 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
     # loop files
     for file in file_paths:
 
-        # collect links from each file
+        # collect links from each file (unique=True is set)
         urls = fileproc.collect_links_from_file(file)
 
         # eliminate white listed urls and white listed white listed patterns
-        if len(white_listed_urls) > 0 or len(white_listed_patterns) > 0:
+        if white_listed_urls or white_listed_patterns:
             urls = [url for url in urls
                     if not white_listed(url,
                                         white_listed_urls,
@@ -87,10 +92,14 @@ def check_repo(file_paths, print_all, white_listed_urls, white_listed_patterns, 
 
 
 def get_branch():
-    """Derive the selected branch. We first look to the environment variable
-       for INPUT_BRANCH, meaning that the user set the branch variable. If
-       that is unset we parse GITHUB_REF. If both of those are unset,
-       then we default to master.
+    """
+    Derive the selected branch. We first look to the environment variable
+    for INPUT_BRANCH, meaning that the user set the branch variable. If
+    that is unset we parse GITHUB_REF. If both of those are unset,
+    then we default to master.
+
+    Returns:
+        the branch found in the environment, otherwise master.
     """
     # First check goes to use setting in action
     branch = os.getenv("INPUT_BRANCH")
@@ -114,33 +123,30 @@ if __name__ == "__main__":
     cleanup = os.getenv("INPUT_CLEANUP", "false").lower()
     file_types = os.getenv("INPUT_FILE_TYPES", "").split(",")
     print_all = os.getenv("INPUT_PRINT_ALL", "").lower()
-    white_listed_urls = os.getenv("INPUT_WHITE_LISTED_URLS", "").split(",")
-    white_listed_patterns = os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(",")
+    white_listed_urls = urlproc.remove_empty(os.getenv("INPUT_WHITE_LISTED_URLS", "").split(","))
+    white_listed_patterns = urlproc.remove_empty(os.getenv("INPUT_WHITE_LISTED_PATTERNS", "").split(","))
+    white_listed_files = urlproc.remove_empty(os.getenv("INPUT_WHITE_LISTED_FILES", "").split(","))
     force_pass = os.getenv("INPUT_FORCE_PASS", "false").lower()
     retry_count = int(os.getenv("INPUT_RETRY_COUNT", 1))
     timeout = int(os.getenv("INPUT_TIMEOUT", 5)) # seconds
-
-    # Are whitelisted urls provided, or an empty string?
-    white_listed_urls = [x for x in white_listed_urls if x not in ["", None]]
-    white_listed_patterns = [x for x in white_listed_patterns if x not in ["", None]]
 
     # clone project repo if defined
     base_path = os.environ.get("GITHUB_WORKSPACE", os.getcwd())
 
     # Alert user about settings
-    print("  base path: %s" % base_path)
-    print("   git path: %s" % git_path)
-    print("  subfolder: %s" % subfolder)
-    print("     branch: %s" % branch)
-    print("    cleanup: %s" % cleanup)
-    print(" file types: %s" % file_types)
-    print("  print all: %s" % print_all)
-    print("  whistlist: %s" % white_listed_urls)
-    print("   patterns: %s" % white_listed_patterns)
-    print(" force pass: %s" % force_pass)
-    print("retry count: %s" % retry_count)
-    print("    timeout: %s" % timeout)
-
+    print("      base path: %s" % base_path)
+    print("       git path: %s" % git_path)
+    print("      subfolder: %s" % subfolder)
+    print("         branch: %s" % branch)
+    print("        cleanup: %s" % cleanup)
+    print("     file types: %s" % file_types)
+    print("      print all: %s" % print_all)
+    print(" url whitetlist: %s" % white_listed_urls)
+    print("   url patterns: %s" % white_listed_patterns)
+    print("  file patterns: %s" % white_listed_files)
+    print("     force pass: %s" % force_pass)
+    print("    retry count: %s" % retry_count)
+    print("        timeout: %s" % timeout)
 
     # If a custom base path is provided, clone and use it
     if git_path not in ["", None]:
@@ -154,11 +160,17 @@ if __name__ == "__main__":
         sys.exit("Cannot find %s to check" % base_path)
 
     # get all file paths
-    file_paths = fileproc.get_file_paths(base_path, file_types)
+    file_paths = fileproc.get_file_paths(base_path=base_path,
+                                         file_types=file_types,
+                                         white_listed_files=white_listed_files)
 
     # check repo urls
-    check_results = check_repo(file_paths, print_all, white_listed_urls,
-                               white_listed_patterns, retry_count, timeout)
+    check_results = check_repo(file_paths=file_paths,
+                               print_all=print_all,
+                               white_listed_urls=white_listed_urls,
+                               white_listed_patterns=white_listed_patterns,
+                               retry_count=retry_count,
+                               timeout=timeout)
 
     # delete repo when done, if requested
     if cleanup == "true":
@@ -166,12 +178,13 @@ if __name__ == "__main__":
 
     # exit
     if len(check_results) == 0:
-        print("Done. No links were collected.")
+        print("\n\nDone. No links were collected.")
         sys.exit(0)
 
     elif force_pass == "false" and len(check_results[1]) > 0 :
-        print("Done. The following URLS did not pass:")
-        print("\x1b[31m" + "\n".join(check_results[1]) + "\x1b[0m")
+        print("\n\nDone. The following URLS did not pass:")
+        for failed_url in check_results[1]:
+            print("\x1b[31m" + failed_url + "\x1b[0m")
         sys.exit(1)
 
     else :
