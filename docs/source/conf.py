@@ -20,6 +20,8 @@ project = 'URLs-checker'
 copyright = '2020, urlstechie'
 author = 'urlstechie'
 
+# The master toctree document.
+master_doc = 'index'
 
 
 # -- General configuration ---------------------------------------------------
