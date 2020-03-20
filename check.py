@@ -9,7 +9,14 @@ from core import fileproc
 
 def clone_repo(git_path, branch="master"):
     """
-    clone and name a git repository.
+    Clone and name a git repository.
+
+    Args:
+        - git_path (str) : https path to git repository.
+        - branch   (str) : name of the brankch to use. Default="master"
+
+    Returns:
+        (str) base path of the cloned git repository.
     """
     base_path = os.path.basename(git_path)
     result = subprocess.run(["git", "clone", "-b", branch, git_path, base_path],
@@ -24,7 +31,13 @@ def clone_repo(git_path, branch="master"):
 
 def del_repo(base_path):
     """
-    delete repository.
+    Delete repository.
+
+    Args:
+        - base_path (str) : base path of the cloned git repository.
+
+    Returns:
+        (str) message/ code describing whether the operation was successfully excuted.
     """
     # clone repo
     result = subprocess.run(["rm", "-R", "-f", base_path],
@@ -35,7 +48,15 @@ def del_repo(base_path):
 
 def white_listed(url, white_listed_urls, white_listed_patterns):
     """
-    check if link is in the white listed URLs or patterns to ignore.
+    Check if link is in the white listed URLs or patterns to ignore.
+
+    Args:
+        - url                    (str) : link to check.
+        - white_listed_urls     (list) : list of white-listed urls.
+        - white_listed_patterns (list) : list of white-listed patterns.
+
+    Returns:
+        (bool) boolean for whether link is white-listed or not.
     """
     # check white listed urls
     if url in white_listed_urls:
@@ -59,7 +80,18 @@ def check_repo(file_paths,
                retry_count=1,
                timeout=5):
     """
-    check all urls extracted from all files in a repository.
+    Check all urls extracted from all files in a repository.
+
+    Args:
+        - file_paths            (list) : list of file paths with urls to check.
+        - print_all              (str) : control var for whether to print all checked file names or only the ones with urls.
+        - white_listed_urls     (list) : list of white-listed urls.
+        - white_listed_patterns (list) : list of white-listed patterns.
+        - retry_count            (int) : number of retries on failed first check. Default=1.
+        - timeout                (int) : timeout to use when waiting on check feedback. Default=5.
+
+    Returns:
+        (list) check-results as a list of two lists (successfull checks, failed checks).
     """
     # init results list (first is success, second is issue)
     check_results = [[], []]
@@ -99,7 +131,7 @@ def get_branch():
     then we default to master.
 
     Returns:
-        the branch found in the environment, otherwise master.
+        (str) the branch found in the environment, otherwise master.
     """
     # First check goes to use setting in action
     branch = os.getenv("INPUT_BRANCH")

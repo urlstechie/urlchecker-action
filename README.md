@@ -53,7 +53,7 @@ jobs:
         white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
         # choose if the force pass or not
-        force_pass = true
+        force_pass : true
 ```
 
 
@@ -111,7 +111,7 @@ jobs:
         white_listed_files: README.md,/github/workspace/_config.yml
 
         # choose if the force pass or not
-        force_pass = true
+        force_pass : true
 ```
 ## Inputs
 
@@ -133,7 +133,7 @@ jobs:
 
 ## Demo
 - Using version > 0.1.4
-<img src="demo.png"/>
+<img src="demo2.gif"/>
 
 - Using version =< 0.1.4
 <img src="demo.gif"/>

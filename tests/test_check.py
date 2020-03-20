@@ -70,17 +70,28 @@ def test_check_repo(file_paths,
 
 
 @pytest.mark.parametrize('config_fname', ['./tests/_local_test_config.conf'])
-def test_script(config_fname):
+@pytest.mark.parametrize('cleanup', ["false", "true"])
+@pytest.mark.parametrize('print_all', ["false", "true"])
+@pytest.mark.parametrize('force_pass', ["false", "true"])
+@pytest.mark.parametrize('rcount', ["1", "3"])
+@pytest.mark.parametrize('timeout', ["3", "5"])
+def test_script(config_fname, cleanup, print_all, force_pass, rcount, timeout):
     # init config parser
     config = configparser.ConfigParser()
     config.read(config_fname)
 
     # init env variables
-    os.environ["INPUT_GIT_PATH"] = config['DEFAULT']["git_path_test_value"]
+    os.environ["INPUT_GIT_PATH"]  = config['DEFAULT']["git_path_test_value"]
+    os.environ["INPUT_SUBFOLDER"] = "_project"
+    os.environ["INPUT_CLEANUP"]    = cleanup
     os.environ["INPUT_FILE_TYPES"] = config['DEFAULT']["file_types_test_values"]
-    os.environ["INPUT_PRINT_ALL"] = config['DEFAULT']["print_all_test_value"]
+    os.environ["INPUT_PRINT_ALL"]  = print_all
     os.environ["INPUT_WHITE_LISTED_URLS"] = config['DEFAULT']["white_listed_test_urls"]
     os.environ["INPUT_WHITE_LISTED_PATTERNS"] =  config['DEFAULT']["white_listed__test_patterns"]
+    os.environ["INPUT_WHITE_LISTED_FILES"] = "conf.py"
+    os.environ["INPUT_FORCE_PASS"]  = force_pass
+    os.environ["INPUT_RETRY_COUNT"] = rcount
+    os.environ["INPUT_TIMEOUT"]     = timeout
 
     # excute script
     pipe = subprocess.run(["python3", "check.py"],
@@ -98,7 +109,7 @@ def test_locally(local_folder_path, config_fname):
     # read input variables
     git_path = local_folder_path
     file_types = config['DEFAULT']["file_types_test_values"].split(",")
-    print_all = config['DEFAULT']["print_all_test_value"]
+    print_all = "true"
     white_listed_urls = config['DEFAULT']["white_listed_test_urls"].split(",")
     white_listed_patterns = config['DEFAULT']["white_listed__test_patterns"].split(",")
 
@@ -123,7 +134,7 @@ def test_check_generally(retry_count):
     # init vars
     git_path = "https://github.com/SuperKogito/SuperKogito.github.io.git"
     file_types = [".py", ".md"]
-    print_all = "True"
+    print_all = "true"
     white_listed_urls = ["https://superkogito.github.io/figures/fig2.html",
                          "https://superkogito.github.io/figures/fig4.html"]
     white_listed_patterns = ["https://superkogito.github.io/tables"]

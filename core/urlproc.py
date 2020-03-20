@@ -12,23 +12,23 @@ def remove_empty(file_list):
     Given a file list, return only those that aren't empty string or None.
 
     Args:
-        file_list (list): a list of files to remove None or empty string from.
+        - file_list (list): a list of files to remove None or empty string from.
 
     Returns:
-        list of (non None or empty string) contents.
+        (list) list of (non None or empty string) contents.
     """
     return [x for x in file_list if x not in ["", None]]
 
 
 def record_response(url, response, check_results):
     """
-    record response status of an input url. This function is run after success,
+    Record response status of an input url. This function is run after success,
     or at the end of retry to record the final response.
 
     Args:
-        url          (str) : url text.
-        response    (list) : request response from the url request.
-        check_results (list) : list of lists, success appended to 0, failure to 1.
+        - url          (str) : url text.
+        - response    (list) : request response from the url request.
+        - check_results (list) : list of lists, success appended to 0, failure to 1.
     """
     # response of None indicates a failure
     if not response:
@@ -45,15 +45,15 @@ def record_response(url, response, check_results):
 
 def check_response_status_code(url, response):
     """
-    check response status of an input url. Returns a boolean
+    Check response status of an input url. Returns a boolean
     to indicate if retry is needed.
 
     Args:
-        url          (str) : url text.
-        response    (list) : request response from the url request.
+        - url          (str) : url text.
+        - response    (list) : request response from the url request.
 
     Returns:
-        boolean to indicate success (True) or fail (False).
+        (bool) boolean to indicate success (True) or fail (False).
     """
     # Case 1: response is None indicating triggered error
     if not response:
@@ -71,7 +71,8 @@ def check_response_status_code(url, response):
 
 
 def get_user_agent():
-    """Return a randomly chosen user agent for requests
+    """
+    Return a randomly chosen user agent for requests
 
     Returns:
         user agent string to include with User-Agent.
@@ -106,14 +107,14 @@ def get_user_agent():
 
 def check_urls(file, urls, check_results, retry_count=1, timeout=5):
     """
-    check urls extracted from a certain file and print the checks results.
+    Check urls extracted from a certain file and print the checks results.
 
     Args:
-        file           (str) : path to file.
-        urls          (list) : list of urls to check.
-        check_results (list) : a list containing a list of succesfully checked links and errenous links.
-        retry_count    (int) : a number of retries to issue (defaults to 1, no retry).
-        timeout        (int) : a timeout in seconds for blocking operations like the connection attempt.
+        - file           (str) : path to file.
+        - urls          (list) : list of urls to check.
+        - check_results (list) : a list containing a list of succesfully checked links and errenous links.
+        - retry_count    (int) : a number of retries to issue (defaults to 1, no retry).
+        - timeout        (int) : a timeout in seconds for blocking operations like the connection attempt.
     """
     # init seen urls list
     seen = set()

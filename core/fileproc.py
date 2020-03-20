@@ -7,15 +7,15 @@ from core import urlmarker
 
 def check_file_type(file_path, file_types):
     """
-    check file type to assert that only file with certain predefined extensions
+    Check file type to assert that only file with certain predefined extensions
     are checked.
 
     Args:
-        file_path   (str) : path to file.
-        file_types (list) : list of file extensions to accept.
+        - file_path   (str) : path to file.
+        - file_types (list) : list of file extensions to accept.
 
     Returns:
-        boolean, true if file type is supported else false.
+        (bool) true if file type is supported else false.
     """
     ftype = "." + file_path.split(".")[-1]
     if ftype in file_types:
@@ -31,11 +31,11 @@ def include_file(file_path, white_list_patterns):
     The user is currently not notified if a file is marked for removal.
 
     Args:
-        file_path (str): a file path to check if should be included.
-        white_list_patterns (list): list of patterns to whitelist (include).
+        - file_path            (str) : a file path to check if should be included.
+        - white_list_patterns (list) : list of patterns to whitelist (include).
 
     Returns:
-        boolean to indicate if the URL should be white listed (included).
+        (bool) boolean indicating if the URL should be white listed (included).
     """
     # No white listed patterns, all files are included
     if not white_list_patterns:
@@ -50,15 +50,15 @@ def get_file_paths(base_path,
                    file_types,
                    white_listed_files=None):
     """
-    get path to all files under a give directory and its subfolders.
+    Get path to all files under a give directory and its subfolders.
 
     Args:
-        base_path   (str) : base path.
-        file_types (list) : list of file extensions to accept.
-        white_listed_files (list): list of files or patterns to white list
+        - base_path           (str) : base path.
+        - file_types         (list) : list of file extensions to accept.
+        - white_listed_files (list) : list of files or patterns to white list
 
     Returns:
-        list of file paths.
+        (list) list of file paths.
     """
     white_listed_files = white_listed_files or []
 
@@ -78,13 +78,13 @@ def get_file_paths(base_path,
 
 def collect_links_from_file(file_path, unique=True):
     """
-    collect all links in a file.
+    Collect all links in a file.
 
     Args:
-        file_path   (str) : path to file.
+        - file_path   (str) : path to file.
 
     Returns:
-        list of links/ urls in a file.
+        (list) list of links/ urls in a file.
     """
     # read file content
     with open(file_path, 'r') as file:
