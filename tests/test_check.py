@@ -76,11 +76,18 @@ def test_script(config_fname):
     config.read(config_fname)
 
     # init env variables
-    os.environ["INPUT_GIT_PATH"] = config['DEFAULT']["git_path_test_value"]
+    os.environ["INPUT_GIT_PATH"]  = config['DEFAULT']["git_path_test_value"]
+    os.environ["INPUT_SUBFOLDER"] = "_project"
+    os.environ["INPUT_CLEANUP"]    = "false"
     os.environ["INPUT_FILE_TYPES"] = config['DEFAULT']["file_types_test_values"]
-    os.environ["INPUT_PRINT_ALL"] = config['DEFAULT']["print_all_test_value"]
+    os.environ["INPUT_PRINT_ALL"]  = config['DEFAULT']["print_all_test_value"]
     os.environ["INPUT_WHITE_LISTED_URLS"] = config['DEFAULT']["white_listed_test_urls"]
     os.environ["INPUT_WHITE_LISTED_PATTERNS"] =  config['DEFAULT']["white_listed__test_patterns"]
+    os.environ["INPUT_SUBFOLDER"] = "_prooject"
+    os.environ["INPUT_WHITE_LISTED_FILES"] = "conf.py"
+    os.environ["INPUT_FORCE_PASS"]  = "true"
+    os.environ["INPUT_RETRY_COUNT"] = "1"
+    os.environ["INPUT_TIMEOUT"]     = "5"
 
     # excute script
     pipe = subprocess.run(["python3", "check.py"],
