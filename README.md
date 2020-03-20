@@ -133,7 +133,7 @@ jobs:
 
 ## Demo
 - Using version > 0.1.4
-<img src="demo.png"/>
+<img src="demo2.gif"/>
 
 - Using version =< 0.1.4
 <img src="demo.gif"/>
