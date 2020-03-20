@@ -11,9 +11,13 @@
 A GitHub action to collect and check URLs in a project (code and documentation).
 The action aims at detecting and reporting broken links.
 
-# How to use it?
+## Code documentation
 
-## Example with Checkout
+A detailed documentation of the code is available under [urls-checker.readthedocs.io](https://urls-checker.readthedocs.io/en/latest/)
+
+## How to use it?
+
+### Example with Checkout
 
 For most use cases, you will want to use the git repository that is being checked
 for a GitHub actions, and we do this by way of the [actions/checkout](https://github.com/actions/checkout) action.
@@ -58,7 +62,7 @@ jobs:
 ```
 
 
-## Example with Custom Clone
+### Example with Custom Clone
 
 It could, however, be the case that you've set up a repository with one or more uses of the URLChecker
 that must clone one or more repos (possibly with varying branches) before doing the check.
@@ -138,6 +142,3 @@ jobs:
 
 - Using version =< 0.1.4
 <img src="demo.gif"/>
-
-## Code documnetation
-A detailed documentation of the code is available under [urls-checker.readthedocs.io](https://urls-checker.readthedocs.io/en/latest/)
