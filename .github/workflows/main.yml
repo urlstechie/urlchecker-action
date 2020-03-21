@@ -10,7 +10,7 @@ jobs:
     - name: Test GitHub Action
       uses: ./
       with: 
-        git_path: https://github.com/urlstechie/URLs-checker-test-repo
+        git_path: https://github.com/urlstechie/urlchecker-test-repo
         file_types: .md,.py,.rst
         timeout: 5
         retry_count: 3
