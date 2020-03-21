@@ -1,0 +1,19 @@
+name: Main testing workflow
+on: [pull_request]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Actions Repository
+      uses: actions/checkout@v2
+    - name: Test GitHub Action
+      uses: ./
+      with: 
+        git_path: https://github.com/urlstechie/URLs-checker-test-repo
+        file_types: .md,.py,.rst
+        timeout: 5
+        retry_count: 3
+        white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
+        white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+        white_listed_files: README.md,/github/workspace/_config.yml
