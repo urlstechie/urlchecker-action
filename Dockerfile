@@ -1,11 +1,4 @@
-FROM python:3
-
-ADD requirements.txt /requirements.txt
-RUN pip install -r requirements.txt
-
-RUN apt-get install -y git
-
-ADD check.py /check.py
-ADD core /core
-
-ENTRYPOINT ["python", "-u", "/check.py" ]
+FROM quay.io/urlstechie/urlchecker:latest
+COPY entrypoint.sh /entrypoint.sh
+WORKDIR /github/workspace
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

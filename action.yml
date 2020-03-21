@@ -1,4 +1,4 @@
-name: "URLs-checker"
+name: "urlchecker-action"
 author: "Ayoub Malek, Vanessa Sochat"
 description: "Automatically check for broken links in a project files. This includes python, markdwon, restructured text files and more."
 
