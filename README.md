@@ -1,4 +1,4 @@
-[![GitHub Marketplace](https://img.shields.io/static/v1?label=Marketplace&message=urlchecker-action&color=blue?style=flat&logo=github)](https://github.com/marketplace/actions/urls-checker)
+[![GitHub Marketplace](https://img.shields.io/static/v1?label=Marketplace&message=urlchecker-action&color=blue?style=flat&logo=github)](https://github.com/marketplace/actions/urlchecker-action)
 [![CodeFactor](https://www.codefactor.io/repository/github/urlstechie/urlchecker-action/badge)](https://www.codefactor.io/repository/github/urlstechie/urlchecker-action)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](https://github.com/urlstechie/urlchecker-action/blob/master/LICENSE)
 
