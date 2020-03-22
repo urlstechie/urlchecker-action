@@ -1,10 +1,6 @@
-[![Build Status](https://travis-ci.org/urlstechie/urlchecker-action.svg?branch=master)](https://travis-ci.org/urlstechie/urlchecker-action)
-[![Documentation Status](https://readthedocs.org/projects/urlchecker-action/badge/?version=latest)](https://urls-checker.readthedocs.io/en/latest/?badge=latest)
-[![codecov](https://codecov.io/gh/urlstechie/urlchecker-action/branch/master/graph/badge.svg)](https://codecov.io/gh/urlstechie/URLs-checker)
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-URLs--checker-blue?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/marketplace/actions/urls-checker)
-[![Python](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)](https://www.python.org/doc/versions/)
+[![GitHub Marketplace](https://img.shields.io/static/v1?label=Marketplace&message=urlchecker-action&color=blue?style=flat&logo=github)](https://github.com/marketplace/actions/urls-checker)
+[![CodeFactor](https://www.codefactor.io/repository/github/urlstechie/urlchecker-action/badge)](https://www.codefactor.io/repository/github/urlstechie/urlchecker-action)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](https://github.com/urlstechie/urlchecker-action/blob/master/LICENSE)
-[![CodeFactor](https://www.codefactor.io/repository/github/urlstechie/urls-checker/badge)](https://www.codefactor.io/repository/github/urlstechie/urlchecker-action)
 
 # urlchecker-action
 
