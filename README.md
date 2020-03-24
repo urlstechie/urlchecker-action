@@ -7,11 +7,10 @@
 A GitHub action to collect and check URLs in a project (code and documentation).
 The action aims at detecting and reporting broken links.
 
-## Code documentation
-
-A detailed documentation of the code is available under [urls-checker.readthedocs.io](https://urls-checker.readthedocs.io/en/latest/)
-
 ## How to use it?
+
+A set of examples are included in the [examples](examples) folder. A few detailed 
+examples are also included below.
 
 ### Example with Checkout
 
@@ -30,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.1.5
+      uses: urlstechie/urlchecker-action@0.1.7
       with:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
@@ -76,7 +75,7 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: urlstechie/urlchecker-action@0.1.5
+      uses: urlstechie/urlchecker-action@0.1.7
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/urlstechie/URLs-checker-test-repo
@@ -138,3 +137,13 @@ jobs:
 
 - Using version =< 0.1.4
 <img src="demo.gif"/>
+
+## Support
+
+Do you have a question or an issue? Please [open an issue](https://github.com/urlstechie/urlchecker-action/issues) and we can help!
+The following communities are using the url checker! You can look here for examples
+or inspiration. If you want to add your community, please let us know with an issue.
+
+- [awesome-rseng](https://github.com/rseng/awesome-rseng)
+- [buildtest](https://github.com/HPC-buildtest/buildtest-framework)
+- [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io)
