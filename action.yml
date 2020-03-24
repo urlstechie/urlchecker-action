@@ -32,6 +32,11 @@ inputs:
     required: false
     default: 1
 
+  save:
+    description: "A csv file path to save the results to."
+    required: false
+    default: ""
+
   timeout:
     description: "The timeout (seconds) to provide to requests to wait for a response."
     required: false

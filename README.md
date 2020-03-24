@@ -125,6 +125,7 @@ jobs:
 | `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
 | `print_all`                 | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
 | `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
+| `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |
 | `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
 | `white_listed_urls`         | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
 | `white_listed_patterns`     | <span style="color:green"> optional </span>  | A comma separated patterns to exclude during URL checks.         |
