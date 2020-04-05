@@ -17,7 +17,7 @@ fi
 
 # cleanup is optional (boolean)
 if [ ! -z "${INPUT_CLEANUP}" ]; then
-    COMMAND="${COMMAND} --cleanup"
+    COMMAND="${COMMAND} --cleanup ${INPUT_CLEANUP}"
 fi
 
 # subfolder is optional
@@ -28,7 +28,7 @@ fi
 
 # print all defaults to true (unless set to false)
 if [ "${INPUT_PRINT_ALL}" == "false" ]; then
-    COMMAND="${COMMAND} --no-print"
+    COMMAND="${COMMAND} --no-print ${INPUT_NO_PRINT}"
     echo "Automated PR requested"
 fi
 
@@ -72,7 +72,7 @@ fi
 # force pass (optional)
 if [ "${INPUT_FORCE_PASS}" == "true" ]; then
     echo "Force pass requested."
-    COMMAND="${COMMAND} --force-pass"
+    COMMAND="${COMMAND} --force-pass ${INPUT_FORCE_PASS}"
 fi
 
 # git path, if not defined, we assume $PWD
