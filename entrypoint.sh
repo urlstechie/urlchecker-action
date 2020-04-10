@@ -64,6 +64,11 @@ if [ ! -z "${INPUT_TIMEOUT}" ]; then
     COMMAND="${COMMAND} --timeout ${INPUT_TIMEOUT}"
 fi
 
+# files (optional)
+if [ ! -z "${INPUT_INCLUDE_FILES}" ]; then
+    COMMAND="${COMMAND} --files ${INPUT_INCLUDE_FILES}"
+fi
+
 # save (optional)
 if [ ! -z "${INPUT_SAVE}" ]; then
     COMMAND="${COMMAND} --save ${INPUT_SAVE}"

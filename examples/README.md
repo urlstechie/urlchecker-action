@@ -12,4 +12,8 @@ would be added to a .github/workflows folder to be run on some [github event](ht
 
 - [urlchecker-whitelist-files.yml](urlchecker-whitelist-files.yml): in this example, we have a repository where we want to check only a README.md file at the root, and importantly, skip over an entire subfolder that serves a rendered site at docs. We want to run the check whenever someone opens a pull request.
 
+## Include Files
+
+- [urlchecker-include-files.yml](urlchecker-include-files.yml): as an alternative to white listing files or patterns, you can specify an explicit file path or pattern to check. This is useful if you want to set some comma separated listing of files or patterns in another step, and then set for the action here.
+
 If you'd like to see an example added, please [open an issue](https://github.com/urlstechie/urlchecker-action/issues).
