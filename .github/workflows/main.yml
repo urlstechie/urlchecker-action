@@ -11,6 +11,7 @@ jobs:
       uses: ./
       with: 
         git_path: https://github.com/urlstechie/urlchecker-test-repo
+        subfolder: test_action
         file_types: .md,.py,.rst
         timeout: 5
         retry_count: 3

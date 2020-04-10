@@ -123,6 +123,7 @@ jobs:
 | `cleanup`                   | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)         |
 | `subfolder`                 | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check            |
 | `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
+| `include_files`             | <span style="color:green"> optional </span>  | A comma-separated list of exact files to check.                  |
 | `print_all`                 | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
 | `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
 | `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |

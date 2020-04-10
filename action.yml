@@ -17,6 +17,11 @@ inputs:
     required: false
     default: false
 
+  include_files:
+    description: "A comma seperated list of paths or patterns to include."
+    required: false
+    default: ""
+
   file_types:
     description: "A comma-separated list of file types to cover in the URL checks"
     required: false
