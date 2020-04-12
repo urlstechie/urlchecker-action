@@ -18,3 +18,15 @@ jobs:
         white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
         white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
         white_listed_files: README.md,/github/workspace/_config.yml
+
+    - name: Test UrlChecker Action with Save
+      uses: ./
+      with: 
+        git_path: https://github.com/urlstechie/urlchecker-test-repo
+        subfolder: test_action
+        file_types: .md
+        force_pass: true
+        save: "results.csv"
+    - name: Check that results exist
+      run: |
+          cat results.csv
