@@ -16,4 +16,8 @@ would be added to a .github/workflows folder to be run on some [github event](ht
 
 - [urlchecker-include-files.yml](urlchecker-include-files.yml): as an alternative to white listing files or patterns, you can specify an explicit file path or pattern to check. This is useful if you want to set some comma separated listing of files or patterns in another step, and then set for the action here.
 
+## Saving
+
+- [urlchecker-save-artifact.yml](urlchecker-save-artifact.yml) save an artifact on success for the results file.
+
 If you'd like to see an example added, please [open an issue](https://github.com/urlstechie/urlchecker-action/issues).

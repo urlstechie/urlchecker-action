@@ -30,3 +30,9 @@ jobs:
     - name: Check that results exist
       run: |
           cat results.csv
+    - name: Upload check results
+      if: success()
+      uses: actions/upload-artifact@v1
+      with:
+        name: urlchecker-results
+        path: results.csv
