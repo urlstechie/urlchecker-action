@@ -16,7 +16,7 @@ if [ ! -z "${INPUT_BRANCH}" ]; then
 fi
 
 # cleanup is optional (boolean)
-if [ ! -z "${INPUT_CLEANUP}" ]; then
+if [ "${INPUT_CLEANUP}" == "true" ]; then
     COMMAND="${COMMAND} --cleanup"
 fi
 
