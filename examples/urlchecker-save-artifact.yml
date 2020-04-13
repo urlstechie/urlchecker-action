@@ -38,10 +38,8 @@ jobs:
         # Save to results.csv
         save: results.csv
 
-    - name: Check that results exist
-      run: cat results.csv
     - name: Upload check results
-      if: success()
+      if: always()
       uses: actions/upload-artifact@v2-preview
       with:
         name: urlchecker-results
