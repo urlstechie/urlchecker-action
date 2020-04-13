@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.1.9
+      uses: urlstechie/urlchecker-action@0.2.0
       with:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
@@ -75,7 +75,7 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: urlstechie/urlchecker-action@0.1.9
+      uses: urlstechie/urlchecker-action@0.2.0
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/urlstechie/URLs-checker-test-repo
