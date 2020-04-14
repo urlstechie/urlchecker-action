@@ -149,3 +149,4 @@ or inspiration. If you want to add your community, please let us know with an is
 - [awesome-rseng](https://github.com/rseng/awesome-rseng)
 - [buildtest](https://github.com/HPC-buildtest/buildtest-framework)
 - [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io)
+- [R-hub docs](https://github.com/r-hub/docs)
