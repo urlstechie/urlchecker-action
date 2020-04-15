@@ -146,7 +146,9 @@ Do you have a question or an issue? Please [open an issue](https://github.com/ur
 The following communities are using the url checker! You can look here for examples
 or inspiration. If you want to add your community, please let us know with an issue.
 
-- [awesome-rseng](https://github.com/rseng/awesome-rseng)
-- [buildtest](https://github.com/HPC-buildtest/buildtest-framework)
-- [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io)
-- [R-hub docs](https://github.com/r-hub/docs)
+| Repository                                                                                          | Workflow (with permalink to YAML) | Example run |
+|-----------------------------------------------------------------------------------------------------|-----------------------------------|-------------|
+| [awesome-rseng](https://github.com/rseng/awesome-rseng)                                             |                                   |             |
+| [buildtest](https://github.com/HPC-buildtest/buildtest-framework)                                   |                                   |             |
+| [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io) |                                   |             |
+| [R-hub docs](https://github.com/r-hub/docs)                                                         |                                   |             |
