@@ -146,7 +146,9 @@ Do you have a question or an issue? Please [open an issue](https://github.com/ur
 The following communities are using the url checker! You can look here for examples
 or inspiration. If you want to add your community, please let us know with an issue.
 
-- [awesome-rseng](https://github.com/rseng/awesome-rseng)
-- [buildtest](https://github.com/HPC-buildtest/buildtest-framework)
-- [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io)
-- [R-hub docs](https://github.com/r-hub/docs)
+| Repository                                                                                          | Workflow (with permalink to YAML) | Example runs |
+|-----------------------------------------------------------------------------------------------------|-----------------------------------|-------------|
+| [awesome-rseng](https://github.com/rseng/awesome-rseng)  | [Check URLs in PRs, whitelists docs](https://github.com/rseng/awesome-rseng/blob/5f5cb78f8392cf10aec2f3952b305ae9611029c2/.github/workflows/urlchecker.yml)                                   | [Logs](https://github.com/rseng/awesome-rseng/actions?query=workflow%3AURLChecker) |
+| [buildtest](https://github.com/HPC-buildtest/buildtest-framework) |  [Check URLs in all commits](https://github.com/HPC-buildtest/buildtest-framework/blob/881501dbf752bf7a8171e10f3d6676c8221761ca/.github/workflows/urlchecker.yml)  |  [Logs](https://github.com/HPC-buildtest/buildtest-framework/actions?query=workflow%3A%22Check+URLs%22)           |
+| [us-rse](https://github.com/USRSE/usrse.github.io) |  [Check URLs in PRs, whitelists some URL patterns](https://github.com/USRSE/usrse.github.io/blob/abcbed5f5703e0d46edb9e8850eea8bb623e3c1c/.github/workflows/urlchecker.yml)                                 |      [Logs](https://github.com/USRSE/usrse.github.io/actions?query=workflow%3A%22Check+URLs%22)       |
+| [R-hub docs](https://github.com/r-hub/docs)  | [Check URLs when on PR labelling](https://github.com/r-hub/docs/blob/bc1eac71206f7cb96ca00148dcf3b46c6d25ada4/.github/workflows/pr.yml) |  [Logs](https://github.com/r-hub/docs/actions?query=workflow%3ACommands)  |
