@@ -143,10 +143,15 @@ jobs:
 ## Support
 
 Do you have a question or an issue? Please [open an issue](https://github.com/urlstechie/urlchecker-action/issues) and we can help!
+
+## In the Wild
+
 The following communities are using the url checker! You can look here for examples
 or inspiration. If you want to add your community, please let us know with an issue.
 
-- [awesome-rseng](https://github.com/rseng/awesome-rseng)
-- [buildtest](https://github.com/HPC-buildtest/buildtest-framework)
-- [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io)
-- [R-hub docs](https://github.com/r-hub/docs)
+| Community                                              | Workflow File | Example Log   |
+|--------------------------------------------------------|---------------|---------------|
+| [awesome-rseng](https://github.com/rseng/awesome-rseng)| [urlchecker on pr](https://github.com/rseng/awesome-rseng/blob/master/.github/workflows/urlchecker.yml) | [log](https://github.com/rseng/awesome-rseng/runs/525890958?check_suite_focus=true) |
+| [buildtest](https://github.com/HPC-buildtest/buildtest-framework) | [urlchecker on push/pr](https://github.com/HPC-buildtest/buildtest-framework/blob/devel/.github/workflows/urlchecker.yml) | [log](https://github.com/HPC-buildtest/buildtest-framework/runs/589631003?check_suite_focus=true) | 
+| [us-rse](https://github.com/USRSE/usrse.github.io) | [urlchecker scheduled](https://github.com/USRSE/usrse.github.io/blob/master/.github/workflows/clean-expired-jobs.yml) | [log](https://github.com/USRSE/usrse.github.io/runs/579921593?check_suite_focus=true) |
+| [R-hub docs](https://github.com/r-hub/docs) | [urchecker on label](https://github.com/r-hub/docs/blob/master/.github/workflows/pr.yml) | [log](https://github.com/r-hub/docs/runs/588008558?check_suite_focus=true) |
