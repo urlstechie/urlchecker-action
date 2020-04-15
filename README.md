@@ -146,9 +146,9 @@ Do you have a question or an issue? Please [open an issue](https://github.com/ur
 The following communities are using the url checker! You can look here for examples
 or inspiration. If you want to add your community, please let us know with an issue.
 
-| Repository                                                                                          | Workflow (with permalink to YAML) | Example run |
+| Repository                                                                                          | Workflow (with permalink to YAML) | Example runs |
 |-----------------------------------------------------------------------------------------------------|-----------------------------------|-------------|
-| [awesome-rseng](https://github.com/rseng/awesome-rseng)                                             |                                   |             |
-| [buildtest](https://github.com/HPC-buildtest/buildtest-framework)                                   |                                   |             |
+| [awesome-rseng](https://github.com/rseng/awesome-rseng)  | [Check URLs in PRs, whitelists docs](https://github.com/rseng/awesome-rseng/blob/5f5cb78f8392cf10aec2f3952b305ae9611029c2/.github/workflows/urlchecker.yml)                                   | [Logs](https://github.com/rseng/awesome-rseng/actions?query=workflow%3AURLChecker) |
+| [buildtest](https://github.com/HPC-buildtest/buildtest-framework) |  [Check URLs in all commits](https://github.com/HPC-buildtest/buildtest-framework/blob/881501dbf752bf7a8171e10f3d6676c8221761ca/.github/workflows/urlchecker.yml)  |  https://github.com/HPC-buildtest/buildtest-framework/actions?query=workflow%3A%22Check+URLs%22           |
 | [The United States Research Software Engineer Assocation](https://github.com/USRSE/usrse.github.io) |                                   |             |
 | [R-hub docs](https://github.com/r-hub/docs)                                                         |                                   |             |
