@@ -20,4 +20,8 @@ would be added to a .github/workflows folder to be run on some [github event](ht
 
 - [urlchecker-save-artifact.yml](urlchecker-save-artifact.yml) save an artifact on success for the results file.
 
+## Pull request
+
+- [urlchecker-pr-label.yml](urlchecker-pr-label.yml) checks URLs in files modified by a PR when you apply a "needs-url-checks" label. You need to create the label first. The PR can be labelled and unlabelled several times. The workflow creates a check run.
+
 If you'd like to see an example added, please [open an issue](https://github.com/urlstechie/urlchecker-action/issues).
