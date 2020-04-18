@@ -1,0 +1,5 @@
+on:
+  release:
+    types: [created, published]
+      run: |
+        curl -XPOST -u "${{ secrets.SuperKogito}}:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json"  -H "Content-Type: application/json" https://api.github.com/repos/urlstechie/urlchecker-test-repo/dispatches --data '{"event_type": "build_application"}'
