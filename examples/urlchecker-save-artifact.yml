@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.2.0
+      uses: urlstechie/urlchecker-action@0.2.1
       with:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
