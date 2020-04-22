@@ -25,6 +25,7 @@ jobs:
     - name: list files
       run: |
           PR=$(jq --raw-output .pull_request.number "${GITHUB_EVENT_PATH}")
+          echo "::set-env name=PR::$PR"
           files=$(curl --request GET \
           --url https://api.github.com/repos/${{ github.repository }}/pulls/$PR/files \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
@@ -49,3 +50,10 @@ jobs:
         name: urlchecker-results
         path: urls.csv
 
+    # Remove the label from the PR after the checks are done
+    - name: Delete label
+      if: always()
+      run: |
+          curl --request DELETE \
+          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR }}/labels/needs-url-checks \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
