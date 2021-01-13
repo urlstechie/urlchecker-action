@@ -10,7 +10,8 @@ The action aims at detecting and reporting broken links.
 ## How to use it?
 
 A set of examples are included in the [examples](examples) folder. A few detailed 
-examples are also included below.
+examples are also included below. Note that examples always reference the master branch,
+however you should change them to reference a [release](https://github.com/urlstechie/urlchecker-action/releases).
 
 ### Example with Checkout
 
@@ -29,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.2.1
+      uses: urlstechie/urlchecker-action@master
       with:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
@@ -78,7 +79,7 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: urlstechie/urlchecker-action@0.2.1
+      uses: urlstechie/urlchecker-action@master
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/urlstechie/URLs-checker-test-repo

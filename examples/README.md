@@ -2,6 +2,7 @@
 
 The following examples are added for your convenience. Each of these files
 would be added to a .github/workflows folder to be run on some [github event](https://help.github.com/en/actions/reference/events-that-trigger-workflows).
+Note that the files reference the "master" branch of the repository for consistency, however you should change this to an actual [release](https://github.com/urlstechie/urlchecker-action/releases) for your deployment.
 
 ## General
 
