@@ -1,0 +1,46 @@
+name: Check URLs
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    - run: |
+          gem install bundler jekyll
+          bundle check || bundle install
+          bundle exec jekyll build
+    - name: urls-checker
+      uses: urlstechie/urlchecker-action@0.1.7
+      with:
+
+        # subfolder with files to test
+        subfolder: _site
+
+        # A comma-separated list of file types to cover in the URL checks
+        file_types: .md,.py,.rst
+
+        # Choose whether to include file with no URLs in the prints.
+        print_all: false
+
+        # The timeout seconds to provide to requests, defaults to 5 seconds
+        timeout: 5
+
+        # How many times to retry a failed request (each is logged, defaults to 1)
+        retry_count: 3
+
+        # A comma separated patterns to exclude during URL checks
+        white_listed_patterns: twitter.com,turing.ac.uk,linkedin.com
+
+        # choose if the force pass or not
+        force_pass : false
