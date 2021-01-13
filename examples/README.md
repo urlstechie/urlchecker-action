@@ -25,3 +25,7 @@ would be added to a .github/workflows folder to be run on some [github event](ht
 - [urlchecker-pr-label.yml](urlchecker-pr-label.yml) checks URLs in files modified by a PR when you apply a "needs-url-checks" label, then it removes the "needs-url-checks" label. You need to create the label first. The PR can be labelled and unlabelled several times. The workflow creates a check run.
 
 If you'd like to see an example added, please [open an issue](https://github.com/urlstechie/urlchecker-action/issues).
+
+## Jekyll
+
+ - [urlchecker-jekyll.yml](urlchecker-jekyll.yml) will use a ruby action to install ruby, needed gems, and then run the urlchecker for the rendered _site. You could also do the same without the build, meaning testing all static files in the repository without needing to build _site.
