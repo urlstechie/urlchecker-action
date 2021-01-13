@@ -132,7 +132,7 @@ jobs:
 | `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
 | `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |
 | `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
-| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
+| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.            |
 | `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.         |
 | `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).           |
 | `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.             |
