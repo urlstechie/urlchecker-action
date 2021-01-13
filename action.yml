@@ -47,17 +47,17 @@ inputs:
     required: false
     default: 5
 
-  white_listed_urls:
+  exclude_urls:
     description: "A comma seperated links to exclude during URL checks."
     required: false
     default: ""
 
-  white_listed_patterns:
+  exclude_patterns:
     description: "A comma seperated patterns to exclude during URL checks."
     required: false
     default: ""
 
-  white_listed_files:
+  exclude_files:
     description: "A comma seperated list of paths or patterns to exclude during URL checks."
     required: false
     default: ""

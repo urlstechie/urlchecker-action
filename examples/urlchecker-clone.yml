@@ -35,13 +35,13 @@ jobs:
         retry_count: 3
 
         # A comma separated links to exclude during URL checks
-        white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
+        exclude_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
         # A comma separated patterns to exclude during URL checks
-        white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+        exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
         # A comma separated list of file patterns (direct paths work as well) to exclude
-        white_listed_files: README.md,/github/workspace/_config.yml
+        exclude_files: README.md,/github/workspace/_config.yml
 
         # choose if the force pass or not
         force_pass : true

@@ -8,13 +8,13 @@ would be added to a .github/workflows folder to be run on some [github event](ht
 - [GitHub Checkout](urlchecker-checkout.yml): the most likely case of usage for this action is checking out the repository that the action is running for, meaning we use the active branch for the check.
 - [GitHub Clone](urlchecker-clone.yml): while it's more a niche use case, you might want to clone one or more repos to check for an action run.
 
-## White Listing
+## Excluding Files and Folders
 
-- [urlchecker-whitelist-files.yml](urlchecker-whitelist-files.yml): in this example, we have a repository where we want to check only a README.md file at the root, and importantly, skip over an entire subfolder that serves a rendered site at docs. We want to run the check whenever someone opens a pull request.
+- [urlchecker-exclude-files.yml](urlchecker-exclude-files.yml): in this example, we have a repository where we want to check only a README.md file at the root, and importantly, skip over an entire subfolder that serves a rendered site at docs. We want to run the check whenever someone opens a pull request.
 
 ## Include Files
 
-- [urlchecker-include-files.yml](urlchecker-include-files.yml): as an alternative to white listing files or patterns, you can specify an explicit file path or pattern to check. This is useful if you want to set some comma separated listing of files or patterns in another step, and then set for the action here.
+- [urlchecker-include-files.yml](urlchecker-include-files.yml): as an alternative to excluding files or patterns, you can specify an explicit file path or pattern to check. This is useful if you want to set some comma separated listing of files or patterns in another step, and then set for the action here.
 
 ## Saving
 

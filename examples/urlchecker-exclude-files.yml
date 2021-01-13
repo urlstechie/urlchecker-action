@@ -11,4 +11,4 @@ jobs:
       uses: urlstechie/urlchecker-action@0.1.7
       with: 
         file_types: .md
-        white_listed_files: docs
+        exclude_files: docs
