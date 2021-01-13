@@ -21,7 +21,7 @@ jobs:
           bundle check || bundle install
           bundle exec jekyll build
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.1.7
+      uses: urlstechie/urlchecker-action@master
       with:
 
         # subfolder with files to test
@@ -40,7 +40,7 @@ jobs:
         retry_count: 3
 
         # A comma separated patterns to exclude during URL checks
-        white_listed_patterns: twitter.com,turing.ac.uk,linkedin.com
+        exclude_patterns: twitter.com,turing.ac.uk,linkedin.com
 
         # choose if the force pass or not
         force_pass : false

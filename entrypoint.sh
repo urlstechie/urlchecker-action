@@ -38,19 +38,19 @@ if [ ! -z "${INPUT_FILE_TYPES}" ]; then
 fi
 
 
-# white listed urls are optional
-if [ ! -z "${INPUT_WHITE_LISTED_URLS}" ]; then
-    COMMAND="${COMMAND} --white-listed-urls ${INPUT_WHITE_LISTED_URLS}"
+# exclude (previously whitelisted) urls are optional
+if [ ! -z "${INPUT_EXCLUDE_URLS}" ]; then
+    COMMAND="${COMMAND} --white-listed-urls ${INPUT_EXCLUDE_URLS}"
 fi
 
-# white listed patterns are optional
-if [ ! -z "${INPUT_WHITE_LISTED_PATTERNS}" ]; then
-    COMMAND="${COMMAND} --white-listed-patterns ${INPUT_WHITE_LISTED_PATTERNS}"
+# exclude (previously white listed) patterns are optional
+if [ ! -z "${INPUT_EXCLUDE_PATTERNS}" ]; then
+    COMMAND="${COMMAND} --white-listed-patterns ${INPUT_EXCLUDE_PATTERNS}"
 fi
 
-# white listed files are optional
-if [ ! -z "${INPUT_WHITE_LISTED_FILES}" ]; then
-    COMMAND="${COMMAND} --white-listed-files ${INPUT_WHITE_LISTED_FILES}"
+# exclude (previously white listed) files are optional
+if [ ! -z "${INPUT_EXCLUDE_FILES}" ]; then
+    COMMAND="${COMMAND} --white-listed-files ${INPUT_EXCLUDE_FILES}"
 fi
 
 
@@ -93,4 +93,3 @@ echo "${COMMAND}"
 
 ${COMMAND}
 echo $?
-

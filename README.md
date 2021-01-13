@@ -10,7 +10,8 @@ The action aims at detecting and reporting broken links.
 ## How to use it?
 
 A set of examples are included in the [examples](examples) folder. A few detailed 
-examples are also included below.
+examples are also included below. Note that examples always reference the master branch,
+however you should change them to reference a [release](https://github.com/urlstechie/urlchecker-action/releases).
 
 ### Example with Checkout
 
@@ -29,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: urls-checker
-      uses: urlstechie/urlchecker-action@0.2.1
+      uses: urlstechie/urlchecker-action@master
       with:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
@@ -47,14 +48,17 @@ jobs:
         retry_count: 3
 
         # A comma separated links to exclude during URL checks
-        white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
+        exclude_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
         # A comma separated patterns to exclude during URL checks
-        white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+        exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
         # choose if the force pass or not
         force_pass : true
 ```
+
+Note that as of version 0.2.2, references to `white_listed_*` have been changed to
+`exclude_*` to be consistent with the `include_*` variables.
 
 
 ### Example with Custom Clone
@@ -75,7 +79,7 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: urlstechie/urlchecker-action@0.2.1
+      uses: urlstechie/urlchecker-action@master
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/urlstechie/URLs-checker-test-repo
@@ -102,13 +106,13 @@ jobs:
         retry_count: 3
 
         # A comma separated links to exclude during URL checks
-        white_listed_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
+        exclude_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
         # A comma separated patterns to exclude during URL checks
-        white_listed_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+        exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
         # A comma separated list of file patterns (direct paths work as well) to exclude
-        white_listed_files: README.md,/github/workspace/_config.yml
+        exclude_files: README.md,/github/workspace/_config.yml
 
         # choose if the force pass or not
         force_pass : true
@@ -128,9 +132,9 @@ jobs:
 | `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
 | `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |
 | `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
-| `white_listed_urls`         | <span style="color:green"> optional </span>  | A comma separated links to exclude during URL checks.            |
-| `white_listed_patterns`     | <span style="color:green"> optional </span>  | A comma separated patterns to exclude during URL checks.         |
-| `white_listed_files`        | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).           |
+| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.            |
+| `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.         |
+| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).           |
 | `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.             |
 
 ## Demo
@@ -148,8 +152,8 @@ or inspiration. If you want to add your community, please let us know with an is
 
 | Repository                                                                                          | Workflow (with permalink to YAML) | Example runs |
 |-----------------------------------------------------------------------------------------------------|-----------------------------------|-------------|
-| [awesome-rseng](https://github.com/rseng/awesome-rseng)  | [Check URLs in PRs, whitelists docs](https://github.com/rseng/awesome-rseng/blob/5f5cb78f8392cf10aec2f3952b305ae9611029c2/.github/workflows/urlchecker.yml)                                   | [Logs](https://github.com/rseng/awesome-rseng/actions?query=workflow%3AURLChecker) |
+| [awesome-rseng](https://github.com/rseng/awesome-rseng)  | [Check URLs in PRs, exclude docs](https://github.com/rseng/awesome-rseng/blob/5f5cb78f8392cf10aec2f3952b305ae9611029c2/.github/workflows/urlchecker.yml)                                   | [Logs](https://github.com/rseng/awesome-rseng/actions?query=workflow%3AURLChecker) |
 | [buildtest](https://github.com/buildtesters/buildtest) |  [Check URLs in all commits](https://github.com/buildtesters/buildtest/blob/v0.9.1/.github/workflows/urlchecker.yml)  |  [Logs](https://github.com/HPC-buildtest/buildtest-framework/actions?query=workflow%3A%22Check+URLs%22)           |
-| [us-rse](https://github.com/USRSE/usrse.github.io) |  [Check URLs in PRs, whitelists some URL patterns](https://github.com/USRSE/usrse.github.io/blob/abcbed5f5703e0d46edb9e8850eea8bb623e3c1c/.github/workflows/urlchecker.yml)                                 |      [Logs](https://github.com/USRSE/usrse.github.io/actions?query=workflow%3A%22Check+URLs%22)       |
+| [us-rse](https://github.com/USRSE/usrse.github.io) |  [Check URLs in PRs, exclude some URL patterns](https://github.com/USRSE/usrse.github.io/blob/abcbed5f5703e0d46edb9e8850eea8bb623e3c1c/.github/workflows/urlchecker.yml)                                 |      [Logs](https://github.com/USRSE/usrse.github.io/actions?query=workflow%3A%22Check+URLs%22)       |
 | [R-hub docs](https://github.com/r-hub/docs)  | [Check URLs when on PR labelling](https://github.com/r-hub/docs/blob/bc1eac71206f7cb96ca00148dcf3b46c6d25ada4/.github/workflows/pr.yml) |  [Logs](https://github.com/r-hub/docs/actions?query=workflow%3ACommands)  |
 | [Berlin Hack & Tell](https://github.com/berlin-hack-and-tell/berlinhackandtell.rocks)  | [Check URLs when on PR labelling](https://github.com/berlin-hack-and-tell/berlinhackandtell.rocks/blob/master/.github/workflows/urlchecker-pr-label.yml) |  [Logs](https://github.com/berlin-hack-and-tell/berlinhackandtell.rocks/actions?query=workflow%3ACommands)  |
