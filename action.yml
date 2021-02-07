@@ -7,6 +7,10 @@ inputs:
     description: "A project to clone. If not provided, assumes already cloned in the present working directory."
     required: false
 
+  subfolder:
+    description: "A subfolder to parse instead of the root directory."
+    required: false
+
   branch:
     description: "If a project (git_path) is defined, use this branch. Defaults to master"
     required: false
