@@ -11,6 +11,10 @@ inputs:
     description: "A subfolder to parse instead of the root directory."
     required: false
 
+  force_pass:
+    description: "Force pass of checking, regardless of the result."
+    required: false
+
   branch:
     description: "If a project (git_path) is defined, use this branch. Defaults to master"
     required: false
