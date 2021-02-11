@@ -34,7 +34,7 @@ fi
 
 # file types are optional
 if [ ! -z "${INPUT_FILE_TYPES}" ]; then
-    COMMAND="${COMMAND} --file-types ${INPUT_FILE_TYPES}"
+    COMMAND="${COMMAND} --file-types \"${INPUT_FILE_TYPES}\""
 fi
 
 
