@@ -9,7 +9,7 @@ The action aims at detecting and reporting broken links.
 
 ## How to use it?
 
-A set of examples are included in the [examples](examples) folder. A few detailed 
+A set of examples are included in the [examples](examples) folder. A few detailed
 examples are also included below. Note that examples always reference the master branch,
 however you should change them to reference a [release](https://github.com/urlstechie/urlchecker-action/releases).
 
@@ -38,7 +38,7 @@ jobs:
         # A comma-separated list of file types to cover in the URL checks
         file_types: .md,.py,.rst
 
-        # Choose whether to include file with no URLs in the prints.
+        # Whether to include files without URLs in the action output
         print_all: false
 
         # The timeout seconds to provide to requests, defaults to 5 seconds
@@ -47,13 +47,13 @@ jobs:
         # How many times to retry a failed request (each is logged, defaults to 1)
         retry_count: 3
 
-        # A comma separated links to exclude during URL checks
+        # A comma-separated list of URLs to exclude from checks
         exclude_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
-        # A comma separated patterns to exclude during URL checks
-        exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
+        # A comma-separated list of substrings that exclude matching URLs from checks
+        exclude_patterns: localhost:3030,https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
-        # choose if the force pass or not
+        # Whether to force success, even if broken links are found
         force_pass : true
 ```
 
@@ -90,52 +90,52 @@ jobs:
         # A subfolder or path to navigate to in the present or cloned repository
         subfolder: docs
 
-        # Delete the cloned repository after running URLchecked (default is false)
+        # Whether to delete the cloned repo after the check (default is `false`)
         cleanup: true
 
         # A comma-separated list of file types to cover in the URL checks
         file_types: .md,.py,.rst
 
-        # Choose whether to include file with no URLs in the prints.
+        # Whether to include files without URLs in the action output
         print_all: false
 
-        # The timeout seconds to provide to requests, defaults to 5 seconds
+        # The timeout seconds to provide to requests (in seconds, defaults to `5`)
         timeout: 5
 
-        # How many times to retry a failed request (each is logged, defaults to 1)
+        # How many times to retry a failed request (each is logged, defaults to `1`)
         retry_count: 3
 
-        # A comma separated links to exclude during URL checks
+        # A comma-separated list of URLs to exclude from checks
         exclude_urls: https://github.com/SuperKogito/URLs-checker/issues/1,https://github.com/SuperKogito/URLs-checker/issues/2
 
-        # A comma separated patterns to exclude during URL checks
+        # A comma-separated list of substrings that exclude matching URLs from checks
         exclude_patterns: https://github.com/SuperKogito/Voice-based-gender-recognition/issues
 
-        # A comma separated list of file patterns (direct paths work as well) to exclude
+        # A comma-separated list of file paths to exclude from checks (supports regex)
         exclude_files: README.md,/github/workspace/_config.yml
 
-        # choose if the force pass or not
+        # Whether to force success, even if broken links are found
         force_pass : true
 ```
 ## Inputs
 
 
-| variable name               | variable type                                |      variable description                                        |
-|-----------------------------|----------------------------------------------|------------------------------------------------------------------|
-| `git_path`                  | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD      |
-| `branch`                    | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master          |
-| `cleanup`                   | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)         |
-| `subfolder`                 | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check            |
-| `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
-| `include_files`             | <span style="color:green"> optional </span>  | A comma-separated list of exact files to check.                  |
-| `print_all`                 | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
-| `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
-| `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |
-| `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
-| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.            |
-| `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.         |
-| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).           |
-| `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.             |
+| variable name               | variable type                                |      variable description                                                             |
+|-----------------------------|----------------------------------------------|---------------------------------------------------------------------------------------|
+| `git_path`                  | <span style="color:green"> optional </span>  | Git URL to clone (if the repository isn't already in `$PWD`)                          |
+| `branch`                    | <span style="color:green"> optional </span>  | Branch to clone (if `git_path` is used, defaults to `master`)                         |
+| `cleanup`                   | <span style="color:green"> optional </span>  | Whether to delete the cloned repo after the check (defaults to `false`)               |
+| `subfolder`                 | <span style="color:green"> optional </span>  | Subfolder to navigate to in the repository to check                                   |
+| `file_types`                | <span style="color:green"> optional </span>  | Comma-separated list of file types to check                                           |
+| `include_files`             | <span style="color:green"> optional </span>  | Comma-separated list of files to check (supports regex)                               |
+| `print_all`                 | <span style="color:green"> optional </span>  | Whether to include files without URLs in the action output (defaults to `true`)       |
+| `retry_count`               | <span style="color:green"> optional </span>  | Number of times to retry a request upon failure (defaults to `3`)                     |
+| `save`                      | <span style="color:green"> optional </span>  | File path where `.csv` results are written                                            |
+| `timeout`                   | <span style="color:green"> optional </span>  | Request timeout (in seconds, defaults to `1`)                                         |
+| `exclude_urls`              | <span style="color:green"> optional </span>  | Comma-separated list of URLs to exclude                                               |
+| `exclude_patterns`          | <span style="color:green"> optional </span>  | Comma-separated list of substrings that exclude matching URLs                         |
+| `exclude_files`             | <span style="color:green"> optional </span>  | Comma-separated list of file paths to exclude (supports regex)                        |
+| `force_pass`                | <span style="color:green"> optional </span>  | Whether to force action success, even if broken links are found (defaults to `false`) |
 
 ## Demo
 - Using version > 0.1.4
