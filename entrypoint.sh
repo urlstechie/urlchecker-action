@@ -32,6 +32,11 @@ if [ "${INPUT_PRINT_ALL}" == "false" ]; then
     echo "Automated PR requested"
 fi
 
+# verbose defaults to false
+if [ "${INPUT_VERBOSE}" == "true" ]; then
+    COMMAND="${COMMAND} --verbose"
+fi
+
 # file types are optional
 if [ ! -z "${INPUT_FILE_TYPES}" ]; then
     COMMAND="${COMMAND} --file-types ${INPUT_FILE_TYPES}"
