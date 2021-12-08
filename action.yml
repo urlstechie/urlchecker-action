@@ -40,6 +40,11 @@ inputs:
     required: false
     default: false
 
+  verbose:
+    description: "Choose whether to print a more verbose end summary with files and broken URLs."
+    required: false
+    default: false
+
   retry_count:
     description: "If a request fails, retry this number of times. Defaults to 1"
     required: false
