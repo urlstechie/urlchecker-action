@@ -99,6 +99,9 @@ jobs:
         # Choose whether to include file with no URLs in the prints.
         print_all: false
 
+        # Choose whether to print a more verbose end summary with files and broken URLs.
+        verbose: true
+
         # The timeout seconds to provide to requests, defaults to 5 seconds
         timeout: 5
 
@@ -120,22 +123,23 @@ jobs:
 ## Inputs
 
 
-| variable name               | variable type                                |      variable description                                        |
-|-----------------------------|----------------------------------------------|------------------------------------------------------------------|
-| `git_path`                  | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD      |
-| `branch`                    | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master          |
-| `cleanup`                   | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)         |
-| `subfolder`                 | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check            |
-| `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.|
-| `include_files`             | <span style="color:green"> optional </span>  | A comma-separated list of exact files to check.                  |
-| `print_all`                 | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.       |
-| `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1    |
-| `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                          |
-| `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.       |
-| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.            |
-| `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.         |
-| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).           |
-| `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.             |
+| variable name               | variable type                                |      variable description                                                      |
+|-----------------------------|----------------------------------------------|--------------------------------------------------------------------------------|
+| `git_path`                  | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD                    |
+| `branch`                    | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master                        |
+| `cleanup`                   | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)                       |
+| `subfolder`                 | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check                          |
+| `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.              |
+| `include_files`             | <span style="color:green"> optional </span>  | A comma-separated list of exact files to check.                                |
+| `print_all`                 | <span style="color:green"> optional </span>  | Choose whether to include file with no URLs in the prints.                     |
+| `verbose`                   | <span style="color:green"> optional </span>  | Choose whether to print a more verbose end summary with files and broken URLs  |
+| `retry_count`               | <span style="color:green"> optional </span>  | If a request fails, retry this number of times. Defaults to 1                  |
+| `save`                      | <span style="color:green"> optional </span>  | A path to a csv file to save results to                                        |
+| `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.                     |
+| `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.                                               |
+| `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.                                            |
+| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).                         |
+| `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.                           |
 
 ## Demo
 - Using version > 0.1.4
