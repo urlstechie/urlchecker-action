@@ -117,8 +117,11 @@ jobs:
         # A comma separated list of file patterns (direct paths work as well) to exclude
         exclude_files: README.md,/github/workspace/_config.yml
 
+        # numbers of workers to run in parallel (defaults to 9 if unset)
+        workers: 4
+
         # choose if the force pass or not
-        force_pass : true
+        force_pass: true
 ```
 ## Inputs
 
@@ -140,6 +143,7 @@ jobs:
 | `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.                                            |
 | `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).                         |
 | `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.                           |
+| `workers`                   | <span style="color:green"> optional </span>  | The number of checks (one per file) to run in parallel, defaults to 9 |
 
 ## Demo
 - Using version > 0.1.4

@@ -37,6 +37,11 @@ if [ "${INPUT_VERBOSE}" == "true" ]; then
     COMMAND="${COMMAND} --verbose"
 fi
 
+# Do we have a number of workers defined?
+if [ ! -z "${INPUT_WORKERS}" ]; then
+    export URLCHECKER_WORKERS=${INPUT_WORKERS}
+fi
+
 # file types are optional
 if [ ! -z "${INPUT_FILE_TYPES}" ]; then
     COMMAND="${COMMAND} --file-types ${INPUT_FILE_TYPES}"
