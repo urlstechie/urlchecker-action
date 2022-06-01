@@ -25,13 +25,13 @@ jobs:
     - name: list files
       run: |
           PR=$(jq --raw-output .pull_request.number "${GITHUB_EVENT_PATH}")
-          echo "::set-env name=PR::$PR"
+          echo "PR=${PR}" >> $GITHUB_ENV
           files=$(curl --request GET \
           --url https://api.github.com/repos/${{ github.repository }}/pulls/$PR/files \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'Accept: application/vnd.github.antiope-preview+json' \
           --header 'content-type: application/json' | jq --raw-output .[].filename | sed 's/^\|$/"/g'|paste -sd, - | tr -d \" | tr -d \') 
-          echo "::set-env name=files::$files"
+          echo "files=${files}" >> $GITHUB_ENV
           
     # Run URL checks
     - name: URLs-checker
@@ -56,4 +56,4 @@ jobs:
       run: |
           curl --request DELETE \
           --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR }}/labels/needs-url-checks \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
