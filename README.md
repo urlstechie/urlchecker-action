@@ -149,11 +149,12 @@ jobs:
 
 ### Hidden File Types
 
-If you need to specify a file_types pattern to include hidden files, you'll need a `.*` pattern that is provided in the contet of a list, for example:
+If you need to specify a file_types pattern to include hidden files, you'll need a `.*` pattern that is provided in the context of a comma separated list, for example:
 
 ```yaml
 file_types: '.*,'
 ```
+If there is another pattern or variable specification that you'd like to see an example of here, please [open an issue](https://github.com/urlstechie/urlchecker-action/issues).
 
 ## Demo
 - Using version > 0.1.4
