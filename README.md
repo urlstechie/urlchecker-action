@@ -145,6 +145,16 @@ jobs:
 | `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.                           |
 | `workers`                   | <span style="color:green"> optional </span>  | The number of checks (one per file) to run in parallel, defaults to 9 |
 
+## Details
+
+### Hidden File Types
+
+If you need to specify a file_types pattern to include hidden files, you'll need a `.*` pattern that is provided in the contet of a list, for example:
+
+```yaml
+file_types: '.*,'
+```
+
 ## Demo
 - Using version > 0.1.4
 <img src="demo2.gif"/>
