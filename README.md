@@ -131,6 +131,7 @@ jobs:
 | `git_path`                  | <span style="color:green"> optional </span>  | A git url to clone, if the repository isn't already in $PWD                    |
 | `branch`                    | <span style="color:green"> optional </span>  | If we do a clone, clone this branch (defaults to master                        |
 | `cleanup`                   | <span style="color:green"> optional </span>  | If we do a clone, delete the cloned folder after (false)                       |
+| `serial`                    | <span style="color:green"> optional </span>  | Run in serial (good for debugging)                     |
 | `subfolder`                 | <span style="color:green"> optional </span>  | A subfolder to navigate to in the repository to check                          |
 | `file_types`                | <span style="color:green"> optional </span>  | A comma-separated list of file types to cover in the URLs checks.              |
 | `include_files`             | <span style="color:green"> optional </span>  | A comma-separated list of exact files to check.                                |
