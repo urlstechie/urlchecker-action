@@ -45,6 +45,11 @@ inputs:
     required: false
     default: false
 
+  serial:
+    description: "Run in serial (good for debugging)"
+    required: false
+    default: false
+
   retry_count:
     description: "If a request fails, retry this number of times. Defaults to 1"
     required: false

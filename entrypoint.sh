@@ -37,6 +37,12 @@ if [ "${INPUT_VERBOSE}" == "true" ]; then
     COMMAND="${COMMAND} --verbose"
 fi
 
+# run in serial for debugging?
+if [ "${INPUT_SERIAL}" == "true" ]; then
+    COMMAND="${COMMAND} --serial"
+fi
+
+
 # Do we have a number of workers defined?
 if [ ! -z "${INPUT_WORKERS}" ]; then
     export URLCHECKER_WORKERS=${INPUT_WORKERS}
