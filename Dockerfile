@@ -1,6 +1,4 @@
-FROM ghcr.io/urlstechie/urlchecker:0.0.32
+FROM ghcr.io/urlstechie/urlchecker:0.0.33-rc
 COPY entrypoint.sh /entrypoint.sh
-RUN pip uninstall fake-useragent && \
-    pip install git+https://github.com/danger89/fake-useragent.git
 WORKDIR /github/workspace
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
