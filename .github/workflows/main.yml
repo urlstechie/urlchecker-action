@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Actions Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Test GitHub Action
       uses: ./
-      with: 
+      with:
         git_path: https://github.com/urlstechie/urlchecker-test-repo
         subfolder: test_action
         file_types: .md,.py,.rst
@@ -21,17 +21,17 @@ jobs:
 
     - name: Test UrlChecker Action with Save
       uses: ./
-      with: 
+      with:
         git_path: https://github.com/urlstechie/urlchecker-test-repo
         subfolder: test_action
         file_types: .md
         force_pass: true
-        save: "results.csv"
+        save: results.csv
     - name: Check that results exist
       run: cat results.csv
     - name: Upload check results
       if: success()
-      uses: actions/upload-artifact@v2-preview
+      uses: actions/upload-artifact@v3
       with:
         name: urlchecker-results
         path: results.csv
