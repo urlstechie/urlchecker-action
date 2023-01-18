@@ -16,9 +16,8 @@ inputs:
     required: false
 
   branch:
-    description: "If a project (git_path) is defined, use this branch. Defaults to master"
+    description: "If a project (git_path) is defined, use this branch."
     required: false
-    default: master
 
   cleanup:
     description: "Cleanup (delete) repository to check after doing so (appropriate for when clone is done)"
