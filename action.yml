@@ -15,6 +15,10 @@ inputs:
     description: "Force pass of checking, regardless of the result."
     required: false
 
+  no_check_certs:
+    description: "Skip certificate checking (default to false)"
+    required: false
+
   branch:
     description: "If a project (git_path) is defined, use this branch. Defaults to master"
     required: false

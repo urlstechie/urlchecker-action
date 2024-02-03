@@ -15,6 +15,11 @@ if [ ! -z "${INPUT_BRANCH}" ]; then
     COMMAND="${COMMAND} --branch ${INPUT_BRANCH}"
 fi
 
+# no_check_certs is optional
+if [ ! -z "${INPUT_NO_CHECK_CERTS}" ]; then
+    COMMAND="${COMMAND} --no-check-certs"
+fi
+
 # cleanup is optional (boolean)
 if [ "${INPUT_CLEANUP}" == "true" ]; then
     COMMAND="${COMMAND} --cleanup"

@@ -142,8 +142,9 @@ jobs:
 | `timeout`                   | <span style="color:green"> optional </span>  | The timeout to provide to requests to wait for a response.                     |
 | `exclude_urls`              | <span style="color:green"> optional </span>  | A comma separated list of links.                                               |
 | `exclude_patterns`          | <span style="color:green"> optional </span>  | A comma separated list of patterns.                                            |
-| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).                         |
-| `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.                           |
+| `exclude_files`             | <span style="color:green"> optional </span>  | Full paths to files to exclude (comma separated list).                        |
+| `force_pass`                | <span style="color:green"> optional </span>  | Choose whether to force a pass when checks are done.                         
+| `no_check_certs`            | <span style="color:green"> optional </span>  | Skip checking certificates (use at your own risk).                         |
 | `workers`                   | <span style="color:green"> optional </span>  | The number of checks (one per file) to run in parallel, defaults to 9 |
 
 ## Details
